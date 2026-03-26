@@ -1,0 +1,16 @@
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bpfinacialmovement;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bpfinancialmovemen;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bplineitemdiscext;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bplineitemdiscount;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bplineitemextensio;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bplineitemtax;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bpretaillineitem;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bpretailtotals;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bpsourcedocumentli;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bptender;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bptenderextensions;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bptendertotals;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bptransactdiscext;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bptransactextensio;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bptransaction;
+TRUNCATE TABLE core_flow_ice.core_flow_ing_raw.raw_bptransactiondisco;
