@@ -1,15 +1,12 @@
--- Убери transactiontypecode из группировки (дедуп ключ = 4 поля, не 5)
-WITH CNT AS (
-    SELECT businessdaydate, retailstoreid, workstationid, transactionsequencenumber, count(*) as qnty
-    FROM ice_baby.core_flow_ing_raw.raw_bptransaction_test
-    WHERE DATE(businessdaydate) IN (DATE '2026-03-17', DATE '2026-03-18')
-    GROUP BY businessdaydate, retailstoreid, workstationid, transactionsequencenumber
-)
-SELECT DATE(businessdaydate) as day, count(*) as duplicates, sum(qnty) as total_rows
-FROM CNT
-WHERE qnty > 1
-GROUP BY DATE(businessdaydate)
-ORDER BY day
-
-2026-03-17	30	60
-2026-03-18	7	14
+SELECT *
+FROM ice_baby.core_flow_ing_raw.raw_bptransaction_test
+WHERE DATE(businessdaydate) = DATE '2026-03-17'
+  AND (businessdaydate, retailstoreid, workstationid, transactionsequencenumber) IN (
+      SELECT businessdaydate, retailstoreid, workstationid, transactionsequencenumber
+      FROM ice_baby.core_flow_ing_raw.raw_bptransaction_test
+      WHERE DATE(businessdaydate) = DATE '2026-03-17'
+      GROUP BY businessdaydate, retailstoreid, workstationid, transactionsequencenumber
+      HAVING count(*) > 1
+  )
+ORDER BY retailstoreid, workstationid, transactionsequencenumber
+LIMIT 10
