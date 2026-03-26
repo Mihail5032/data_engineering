@@ -10,3 +10,6 @@ FROM CNT
 WHERE qnty > 1
 GROUP BY DATE(businessdaydate)
 ORDER BY day
+
+2026-03-17	30	60
+2026-03-18	7	14
