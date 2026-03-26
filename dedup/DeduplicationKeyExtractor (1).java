@@ -33,18 +33,31 @@ public class DeduplicationKeyExtractor implements KeySelector<String, String> {
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(inputStream, StandardCharsets.UTF_8));
 
-            StringBuilder sb = new StringBuilder();
-            char[] buffer = new char[8192];
-            int charsRead;
-            while ((charsRead = reader.read(buffer)) != -1) {
-                sb.append(buffer, 0, charsRead);
-            }
-            String xml = sb.toString();
+            String retailStoreId = "";
+            String businessDayDate = "";
+            String workstationId = "";
+            String txnSeqNum = "";
+            int found = 0;
 
-            String retailStoreId = extractFirst(RETAIL_STORE_ID, xml);
-            String businessDayDate = extractFirst(BUSINESS_DAY_DATE, xml);
-            String workstationId = extractFirst(WORKSTATION_ID, xml);
-            String txnSeqNum = extractFirst(TXN_SEQ_NUM, xml);
+            String line;
+            while ((line = reader.readLine()) != null && found < 4) {
+                if (retailStoreId.isEmpty()) {
+                    String val = extractFirst(RETAIL_STORE_ID, line);
+                    if (!val.isEmpty()) { retailStoreId = val; found++; }
+                }
+                if (businessDayDate.isEmpty()) {
+                    String val = extractFirst(BUSINESS_DAY_DATE, line);
+                    if (!val.isEmpty()) { businessDayDate = val; found++; }
+                }
+                if (workstationId.isEmpty()) {
+                    String val = extractFirst(WORKSTATION_ID, line);
+                    if (!val.isEmpty()) { workstationId = val; found++; }
+                }
+                if (txnSeqNum.isEmpty()) {
+                    String val = extractFirst(TXN_SEQ_NUM, line);
+                    if (!val.isEmpty()) { txnSeqNum = val; found++; }
+                }
+            }
 
             return retailStoreId + "|" + businessDayDate + "|" + workstationId + "|" + txnSeqNum;
 
