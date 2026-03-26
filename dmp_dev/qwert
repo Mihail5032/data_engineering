@@ -10,3 +10,32 @@ WHERE DATE(businessdaydate) = DATE '2026-03-17'
   )
 ORDER BY retailstoreid, workstationid, transactionsequencenumber
 LIMIT 10
+
+
+java.lang.OutOfMemoryError: Java heap space
+	at java.base/java.util.Arrays.copyOf(Unknown Source)
+	at java.base/java.lang.AbstractStringBuilder.ensureCapacityInternal(Unknown Source)
+	at java.base/java.lang.AbstractStringBuilder.append(Unknown Source)
+	at java.base/java.lang.StringBuilder.append(Unknown Source)
+	at ru.x5.process.DeduplicationKeyExtractor.getKey(DeduplicationKeyExtractor.java:40)
+	at ru.x5.process.DeduplicationKeyExtractor.getKey(DeduplicationKeyExtractor.java:21)
+	at org.apache.flink.streaming.api.operators.AbstractStreamOperator.setKeyContextElement(AbstractStreamOperator.java:580)
+	at org.apache.flink.streaming.api.operators.AbstractStreamOperator.setKeyContextElement1(AbstractStreamOperator.java:556)
+	at org.apache.flink.streaming.api.operators.OneInputStreamOperator.setKeyContextElement(OneInputStreamOperator.java:36)
+	at org.apache.flink.streaming.runtime.io.RecordProcessorUtils.lambda$getRecordProcessor$0(RecordProcessorUtils.java:63)
+	at org.apache.flink.streaming.runtime.io.RecordProcessorUtils$$Lambda$1935/0x00007f784eb29de0.accept(Unknown Source)
+	at org.apache.flink.streaming.runtime.tasks.OneInputStreamTask$StreamTaskNetworkOutput.emitRecord(OneInputStreamTask.java:245)
+	at org.apache.flink.streaming.runtime.io.AbstractStreamTaskNetworkInput.processElement(AbstractStreamTaskNetworkInput.java:206)
+	at org.apache.flink.streaming.runtime.io.AbstractStreamTaskNetworkInput.emitNext(AbstractStreamTaskNetworkInput.java:163)
+	at org.apache.flink.streaming.runtime.io.StreamOneInputProcessor.processInput(StreamOneInputProcessor.java:65)
+	at org.apache.flink.streaming.runtime.tasks.StreamTask.processInput(StreamTask.java:638)
+	at org.apache.flink.streaming.runtime.tasks.StreamTask$$Lambda$752/0x00007f784e611ca8.runDefaultAction(Unknown Source)
+	at org.apache.flink.streaming.runtime.tasks.mailbox.MailboxProcessor.runMailboxLoop(MailboxProcessor.java:231)
+	at org.apache.flink.streaming.runtime.tasks.StreamTask.runMailboxLoop(StreamTask.java:980)
+	at org.apache.flink.streaming.runtime.tasks.StreamTask.invoke(StreamTask.java:917)
+	at org.apache.flink.runtime.taskmanager.Task$$Lambda$2488/0x00007f784ec793a8.run(Unknown Source)
+	at org.apache.flink.runtime.taskmanager.Task.runWithSystemExitMonitoring(Task.java:963)
+	at org.apache.flink.runtime.taskmanager.Task.restoreAndInvoke(Task.java:942)
+	at org.apache.flink.runtime.taskmanager.Task.doRun(Task.java:756)
+	at org.apache.flink.runtime.taskmanager.Task.run(Task.java:568)
+	at java.base/java.lang.Thread.run(Unknown Source)
