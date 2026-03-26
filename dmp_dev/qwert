@@ -1,1 +1,21 @@
 
+-- ============================================================
+-- Добавление недостающих колонок и исправление типов
+-- Приведение DMP к эталону
+-- ============================================================
+
+-- 1. raw_bpsourcedocumentli — добавить is_aligned_tran
+ALTER TABLE core_flow_ice.core_flow_ing_raw.raw_bpsourcedocumentli
+ADD COLUMN is_aligned_tran boolean;
+
+-- 2. raw_bptendertotals — добавить is_aligned_tran
+ALTER TABLE core_flow_ice.core_flow_ing_raw.raw_bptendertotals
+ADD COLUMN is_aligned_tran boolean;
+
+-- 3. raw_bpretailtotals — добавить is_aligned_tran
+ALTER TABLE core_flow_ice.core_flow_ing_raw.raw_bpretailtotals
+ADD COLUMN is_aligned_tran boolean;
+
+-- 4. raw_bptender — изменить тип tenderamount с decimal(32,2) на decimal(38,2)
+ALTER TABLE core_flow_ice.core_flow_ing_raw.raw_bptender
+ALTER COLUMN tenderamount SET DATA TYPE decimal(38,2);
