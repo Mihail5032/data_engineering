@@ -10,3 +10,14 @@ git commit -m "add xml-parser-correction from new_parser"
 
 # Запушь
 git push origin dev
+
+PS C:\Users\Mikha.Shishkanov\flink-jobs> git push origin dev
+To scm.x5.ru:sap-car-transfer/flink-jobs.git
+ ! [rejected]        dev -> dev (fetch first)
+error: failed to push some refs to 'scm.x5.ru:sap-car-transfer/flink-jobs.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use   
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+PS C:\Users\Mikha.Shishkanov\flink-jobs> 
