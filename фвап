@@ -1,3 +1,8 @@
-SELECT itemidqualifier, count(*)
-FROM ice_baby.core_flow_ing_raw.raw_bpretaillineitem
-GROUP BY itemidqualifier
+-- Посмотри rtl_txn_rk у дублей — одинаковый или разный?
+SELECT rtl_txn_rk, businessdaydate, retailstoreid, workstationid, 
+       transactionsequencenumber, load_ts
+FROM ice_baby.core_flow_ing_raw.raw_bptransaction_test
+WHERE DATE(businessdaydate) = DATE '2026-03-17'
+  AND retailstoreid = '3612'
+  AND transactionsequencenumber = '1000000000001516372'
+ORDER BY load_ts
