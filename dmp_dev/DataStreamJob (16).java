@@ -30,6 +30,7 @@ public class DataStreamJob {
     private static final String UID_PROCESS = "raw-data-process";
     private final Map<String, TableIdentifier> tableMap = new HashMap<>();
 
+
     public static void main(String[] args) throws Exception {
         DataStreamJob dataStreamJob = new DataStreamJob();
         dataStreamJob.run();
@@ -91,7 +92,7 @@ public class DataStreamJob {
         tableMap.put("E1BPTRANSACTIONDISCO", TableIdentifier.of(SCHEMA, "raw_bptransactiondisco"));
         tableMap.put("E1BPTRANSACTEXTENSIO", TableIdentifier.of(SCHEMA, "raw_bptransactextensio"));
 //        tableMap.put("E1BPTRANSACTEXTENSIO", TableIdentifier.of(SCHEMA, "bptransactextensio_pre"));
-        // tableMap.put("E1BPLINEITEMVOID", TableIdentifier.of(SCHEMA, "raw_bplineitemvoid"));
+       // tableMap.put("E1BPLINEITEMVOID", TableIdentifier.of(SCHEMA, "raw_bplineitemvoid"));
         // tableMap.put("E1BPPOSTVOIDDETAILS", TableIdentifier.of(SCHEMA, "raw_bppostvoiddetails"));
 
         for (Map.Entry<String, TableIdentifier> entry : tableMap.entrySet()) {
@@ -104,28 +105,40 @@ public class DataStreamJob {
         }
 
 
-        // PST: закомментировано — это raw-only парсер
-//        Map<String, TableIdentifier> pstTableMap = new HashMap<>();
-//        pstTableMap.put("PST_BPTRANSACTION", TableIdentifier.of("test_staging", "bptransaction_new_pst_2"));
-//        pstTableMap.put("PST_BPFINANCIALMOVEMEN", TableIdentifier.of("test_staging", "bpfinancialmovemen_new_pst_2"));
-//        pstTableMap.put("PST_BPTRANSACTEXTENSIO", TableIdentifier.of("test_staging", "bptransactextensio_new_pst_2"));
-//        pstTableMap.put("PST_BPFINANCIALMOVEMENTEXTENSIO", TableIdentifier.of("test_staging", "bpfinancialmovementextensio_new_pst_2"));
-//
-//        Map<String, Schema> pstSchemas = new HashMap<>();
-//        for (Map.Entry<String, TableIdentifier> entry : pstTableMap.entrySet()) {
-//            TableLoader loader = TableLoader.fromCatalog(catalogLoader, entry.getValue());
-//            pstSchemas.put(entry.getKey(), getIcebergSchema(loader));
-//        }
+        // PST: пишем в RAW таблицы с применённой PST-логикой
+        Map<String, TableIdentifier> pstTableMap = new HashMap<>();
+        pstTableMap.put("PST_BPTRANSACTION", TableIdentifier.of(SCHEMA, "raw_bptransaction"));
+        pstTableMap.put("PST_BPFINANCIALMOVEMEN", TableIdentifier.of(SCHEMA, "raw_bpfinancialmovemen"));
+        pstTableMap.put("PST_BPTRANSACTEXTENSIO", TableIdentifier.of(SCHEMA, "raw_bptransactextensio"));
+        pstTableMap.put("PST_BPFINANCIALMOVEMENTEXTENSIO", TableIdentifier.of(SCHEMA, "raw_bpfinacialmovement"));
+
+        pstTableMap.put("PST_BPRETAILLINEITEM", TableIdentifier.of(SCHEMA, "raw_bpretaillineitem"));
+        pstTableMap.put("PST_BPLINEITEMEXTENSIO", TableIdentifier.of(SCHEMA, "raw_bplineitemextensio"));
+        pstTableMap.put("PST_BPLINEITEMDISCOUNT", TableIdentifier.of(SCHEMA, "raw_bplineitemdiscount"));
+        pstTableMap.put("PST_BPLINEITEMDISCEXT", TableIdentifier.of(SCHEMA, "raw_bplineitemdiscext"));
+        pstTableMap.put("PST_BPTRANSACTDISCEXT", TableIdentifier.of(SCHEMA, "raw_bptransactdiscext"));
+        pstTableMap.put("PST_BPTENDER", TableIdentifier.of(SCHEMA, "raw_bptender"));
+        pstTableMap.put("PST_BPTENDEREXTENSIONS", TableIdentifier.of(SCHEMA, "raw_bptenderextensions"));
+
+
+        Map<String, Schema> pstSchemas = new HashMap<>();
+        for (Map.Entry<String, TableIdentifier> entry : pstTableMap.entrySet()) {
+            TableLoader loader = TableLoader.fromCatalog(catalogLoader, entry.getValue());
+            pstSchemas.put(entry.getKey(), getIcebergSchema(loader));
+        }
 
         SingleOutputStreamOperator<RowData> rowData = stream
                 .uid(UID_SOURCE)
-                .process(new RawDataProcessFunction(icebergSchemas))
+                .process(new RawDataProcessFunction(icebergSchemas, pstSchemas))
                 .setParallelism(10)
                 .uid(UID_PROCESS);
 
-        // RAW sinks
-        for (Map.Entry<String, TableIdentifier> entry : tableMap.entrySet()) {
-            String segment = entry.getKey();
+        // RAW sinks — только для 5 сегментов без PST-логики
+        java.util.Set<String> rawOnlySegments = java.util.Set.of(
+                "E1BPSOURCEDOCUMENTLI", "E1BPLINEITEMTAX", "E1BPRETAILTOTALS",
+                "E1BPTENDERTOTALS", "E1BPTRANSACTIONDISCO"
+        );
+        for (String segment : rawOnlySegments) {
             OutputTag<RowData> tag = StreamSideOutputTag.getTag(segment);
             TableLoader loader = tableLoaders.get(segment);
 
@@ -140,27 +153,37 @@ public class DataStreamJob {
                     .append();
         }
 
-        // PST sinks — закомментировано, это raw-only парсер
-//        Map<String, TableLoader> pstSinkLoaders = new HashMap<>();
-//        for (Map.Entry<String, TableIdentifier> entry : pstTableMap.entrySet()) {
-//            String pstKey = entry.getKey();
-//            OutputTag<RowData> tag = StreamSideOutputTag.getTag(pstKey);
-//            DataStream<RowData> pstStream = rowData.getSideOutput(tag);
-//            TableLoader loader = TableLoader.fromCatalog(catalogLoader, entry.getValue());
-//            pstSinkLoaders.put(pstKey, loader);
-//
-//            FlinkSink.forRowData(pstStream)
-//                    .tableLoader(loader)
-//                    .writeParallelism(1)
-//                    .upsert(false)
-//                    .uidPrefix("sink-" + pstKey.toLowerCase())
-//                    .set("write.target-file-size-bytes", "268435456")
-//                    .uidPrefix(pstKey)
-//                    .append();
-//        }
+        // PST sinks — параллелизм зависит от нагрузки на sink
+        Map<String, Integer> sinkParallelism = new HashMap<>();
+        sinkParallelism.put("PST_BPLINEITEMEXTENSIO", 3);      // 192M 
+        sinkParallelism.put("PST_BPTRANSACTEXTENSIO", 3);      // 103M 
+        sinkParallelism.put("PST_BPRETAILLINEITEM", 3);        // 65M 
+        sinkParallelism.put("PST_BPTENDEREXTENSIONS", 2);      // 45M 
+        sinkParallelism.put("PST_BPTRANSACTION", 2);           // 13M 
+        sinkParallelism.put("PST_BPTENDER", 2);                // 11M 
 
-        env.execute("XML Parser with correction 11");
+        Map<String, TableLoader> pstSinkLoaders = new HashMap<>();
+        for (Map.Entry<String, TableIdentifier> entry : pstTableMap.entrySet()) {
+            String pstKey = entry.getKey();
+            OutputTag<RowData> tag = StreamSideOutputTag.getTag(pstKey);
+            DataStream<RowData> pstStream = rowData.getSideOutput(tag);
+            TableLoader loader = TableLoader.fromCatalog(catalogLoader, entry.getValue());
+            pstSinkLoaders.put(pstKey, loader);
+
+            int parallelism = sinkParallelism.getOrDefault(pstKey, 1);
+
+            FlinkSink.forRowData(pstStream)
+                    .tableLoader(loader)
+                    .writeParallelism(parallelism)
+                    .upsert(false)
+                    .uidPrefix("sink-" + pstKey.toLowerCase())
+                    .set("write.target-file-size-bytes", "268435456")
+                    .append();
+        }
+
+        env.execute("XML Parser with correction 11 pst in raw");
         closeTableLoaders(tableLoaders);
+        closeTableLoaders(pstSinkLoaders);
         env.close();
     }
 
