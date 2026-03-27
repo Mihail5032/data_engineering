@@ -1,9 +1,1 @@
-Server Response Message:
-org.apache.flink.runtime.rest.handler.RestHandlerException: No jobs included in application.
-	at org.apache.flink.runtime.webmonitor.handlers.JarRunHandler.lambda$handleRequest$1(JarRunHandler.java:120)
-	at java.base/java.util.concurrent.CompletableFuture.uniHandle(Unknown Source)
-	at java.base/java.util.concurrent.CompletableFuture$UniHandle.tryFire(Unknown Source)
-	at java.base/java.util.concurrent.CompletableFuture.postComplete(Unknown Source)
-	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
-
+ru.x5.TestProducerJob
