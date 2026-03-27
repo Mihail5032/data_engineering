@@ -1,0 +1,116 @@
+*----------------------------------------------------------------------*
+***INCLUDE /POSDW/LOUTPUT_WPUFIBF02 .
+*----------------------------------------------------------------------*
+*&---------------------------------------------------------------------*
+*&      Form  map_e1wpf02
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*      -->P_<FS_TRANSACTION>_FINANCIALMOVE  text
+*      <--pt_edidd  text
+*----------------------------------------------------------------------*
+FORM map_e1wpf02  USING    p_fs_financialmovement
+                           TYPE /posdw/tt_financialmovement
+                           pis_transaction        TYPE /posdw/transaction_fi
+                           pi_one_header_per_item TYPE boole_d
+                           pv_package_id          TYPE /posdw/package_id
+                  CHANGING pr_edidd          TYPE REF TO edidd
+                           pt_edidd         TYPE /posdw/tt_edidd
+                  RAISING  /posdw/cx_output_error.
+  TYPES numc TYPE n LENGTH 10.
+
+  DATA: l_s_e1wpf02              TYPE e1wpf02,
+        l_s_extensions           TYPE e1wxx01,
+        ls_gobd_trxindex_package TYPE /posdw/gobd_trxindex_package.
+
+  DATA: wa_fm         TYPE /posdw/financialmovement,
+        wa_extensions TYPE /posdw/extensions,
+        i             TYPE i VALUE 1.
+  DATA: l_kondvalue        TYPE char30.
+
+  FIELD-SYMBOLS <fs_edidd> TYPE edidd.
+
+  LOOP AT p_fs_financialmovement INTO wa_fm.
+*   map transaction type (Vorgangsart) from first item to header edidd
+    IF i = 1 OR pi_one_header_per_item IS NOT INITIAL.
+      PERFORM map_e1wpf01
+        USING
+          pis_transaction
+          wa_fm-fitypecode
+        CHANGING
+          pr_edidd
+          pt_edidd.
+      i = 9.
+    ENDIF.
+    APPEND INITIAL LINE TO pt_edidd ASSIGNING <fs_edidd>.
+    <fs_edidd>-segnam = 'E1WPF02'.
+
+*   fill item
+    CLEAR l_s_e1wpf02.
+    IF pi_one_header_per_item IS NOT INITIAL.
+      wa_fm-finumber = '1'.
+    ENDIF.
+    SHIFT wa_fm-ficurrency LEFT DELETING LEADING space.
+    SHIFT wa_fm-ficurrency LEFT DELETING LEADING '0'.
+    SHIFT wa_fm-finumber LEFT DELETING LEADING ' 0'.
+    SHIFT wa_fm-refererenceid LEFT DELETING LEADING ' 0'.
+
+    l_s_e1wpf02-posnr      = wa_fm-finumber.
+    l_s_e1wpf02-kostl      = wa_fm-accountid.
+    l_s_e1wpf02-kntobject  = wa_fm-accountassignobj.
+
+* Amounts in Idoc WPUFIB01, segment E1WPF02 are expected to be
+* absolute amounts; the sign is encoded via the transaction type
+* e1wpf01-vorgangart.
+    wa_fm-amount  =  abs( wa_fm-amount ).
+
+    CALL FUNCTION '/POSDW/CURRENCY_DECIMALS_OUT'
+      EXPORTING
+        pi_amount          = wa_fm-amount
+        pi_retailstoreid   = pis_transaction-retailstoreid
+        pi_businessdaydate = pis_transaction-businessdaydate
+        pi_transindex      = pis_transaction-transindex
+      IMPORTING
+        pe_amount          = l_kondvalue
+      CHANGING
+        pc_currency        = wa_fm-ficurrency.
+    SHIFT l_kondvalue LEFT DELETING LEADING '0 '.
+    l_s_e1wpf02-wrbtr  =  l_kondvalue.
+
+    l_s_e1wpf02-waers      = wa_fm-ficurrency.
+    l_s_e1wpf02-zuonr      = wa_fm-refererenceid.
+
+    MOVE l_s_e1wpf02 TO <fs_edidd>-sdata.
+
+*   fill customer extensions if available
+    CLEAR wa_extensions.
+    LOOP AT wa_fm-extensions INTO wa_extensions.
+
+      IF NOT wa_extensions IS INITIAL.
+        APPEND INITIAL LINE TO pt_edidd ASSIGNING <fs_edidd>.
+        <fs_edidd>-segnam = 'E1WXX01'.
+
+        CLEAR  l_s_extensions.
+
+        l_s_extensions-fldgrp  = wa_extensions-fieldgroup.
+        l_s_extensions-fldname = wa_extensions-fieldname.
+        l_s_extensions-fldval  = wa_extensions-fieldvalue.
+        MOVE l_s_extensions TO <fs_edidd>-sdata.
+      ENDIF.
+    ENDLOOP."AT wa_fm-extensions INTO wa_extensions.
+
+* add package ID to link with ERP Idoc
+    IF pv_package_id IS NOT INITIAL.
+
+      ls_gobd_trxindex_package-package_id = pv_package_id.
+      ls_gobd_trxindex_package-transindex = CONV numc( pis_transaction-transindex ).
+      APPEND INITIAL LINE TO pt_edidd ASSIGNING <fs_edidd>.
+      <fs_edidd>-segnam = 'E1WXX01'.
+      <fs_edidd>-sdata = ls_gobd_trxindex_package.
+
+    ENDIF."lv_package_id IS NOT INITIAL.
+
+
+  ENDLOOP."AT p_fs_financialmovement INTO wa_fm.
+
+ENDFORM.                    " map_e1wpf02
