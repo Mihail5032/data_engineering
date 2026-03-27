@@ -1,3 +1,4 @@
 .keyBy(value -> String.valueOf(value.hashCode() % 10))
+https://x5group.ktalk.ru/sss7cijia37e
 
 
