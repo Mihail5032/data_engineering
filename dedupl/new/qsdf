@@ -1,1 +1,3 @@
+.keyBy(value -> String.valueOf(value.hashCode() % 10))
+
 
