@@ -1,6 +1,7 @@
 package ru.x5.factory;
 
 import org.apache.flink.connector.kafka.source.KafkaSource;
+import org.apache.flink.connector.kafka.source.KafkaSourceBuilder;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 import org.apache.log4j.Logger;
 import ru.x5.config.PropertiesHolder;
@@ -14,7 +15,7 @@ public class KafkaSourceFactory {
     public static KafkaSource<String> buildKafkaSource() {
         PropertiesHolder pros = PropertiesHolder.getInstance();
 
-        KafkaSource.Builder<String> builder = KafkaSource.<String>builder()
+        KafkaSourceBuilder<String> builder = KafkaSource.<String>builder()
                 .setBootstrapServers(pros.getBoostrapServers())
                 .setTopics(pros.getTopicName())
                 .setGroupId("srv.data_stream_group_id_5")
