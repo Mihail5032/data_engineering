@@ -2,3 +2,5 @@ CREATE TABLE core_flow_ing_raw.raw_bptransaction_test_2
 AS SELECT * FROM core_flow_ing_raw.raw_bptransaction_test 
 WHERE 1=0;
 
+Entry class: ru.x5.TestProducerJob
+
