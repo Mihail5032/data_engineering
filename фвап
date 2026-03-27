@@ -1,18 +1,10 @@
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  5.352 s
-[INFO] Finished at: 2026-03-27T12:31:19+03:00
-[INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (default-compile) on project
- xml-parser-correction: Compilation failure: Compilation failure:
-[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/TestProducerJob.java:[64,43] cannot access org.apache.flink.api.connector.sink2.TwoPhaseCommittingSink
-[ERROR]   class file for org.apache.flink.api.connector.sink2.TwoPhaseCommittingSink not found
-[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/TestProducerJob.java:[74,17] cannot access org.apache.flink.api.connector.sink2.StatefulSink
-[ERROR]   class file for org.apache.flink.api.connector.sink2.StatefulSink not found
-[ERROR] -> [Help 1]
-[ERROR]
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR]
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+git checkout -b feature/test-producer
+
+# 2. Добавить файлы
+git add .
+
+# 3. Закоммитить
+git commit -m "fix TestProducerJob - use plain KafkaProducer"
+
+# 4. Запушить
+git push -u origin feature/test-producer
