@@ -1,0 +1,133 @@
+FUNCTION /posdw/idoc_output_wpufib.
+*"----------------------------------------------------------------------
+*"*"Lokale Schnittstelle:
+*"  IMPORTING
+*"     REFERENCE(I_REVERSAL) TYPE  XFELD
+*"     VALUE(IR_PARAMETERS) TYPE REF TO  /POSDW/IF_PARAMETER_READ
+*"       OPTIONAL
+*"  EXPORTING
+*"     REFERENCE(ER_AFTER_COMMIT) TYPE REF TO
+*"        /POSDW/IF_PROCESS_AFTER_COMMIT
+*"  TABLES
+*"      IT_TRANSACTIONS TYPE  /POSDW/TT_TRANSACTION_INT
+*"      ET_MESSAGE TYPE  /POSDW/TT_MESSAGE
+*"      ET_OBJECTLINK TYPE  /POSDW/TT_OBJECTLINK
+*"----------------------------------------------------------------------
+* This function module convert the transactions into Idoc format
+* from type WPUFIB01( finacial transactions).
+
+* no need to debug this, this is just a possibility to save test-pars:
+  INCLUDE /posdw/test_data_management.
+
+  TYPES: tt_edidd                 TYPE STANDARD TABLE OF edidd.
+
+  DATA: l_transaction         TYPE /posdw/transaction_int,
+        lt_edidd              TYPE tt_edidd,
+        l_lines               TYPE int4,
+        lr_message_check      TYPE REF TO /posdw/cx_message_check,
+        l_old_retailstoreid   TYPE /posdw/retailstoreid,
+*       Sender partner number for idoc control record.
+        l_sndprn              TYPE edidc-sndprn,
+* Table to identify the index range in error
+        lr_idoc               TYPE REF TO /posdw/cl_gen_idoc,
+        lr_edidd              TYPE REF TO edidd,
+        lv_package_id         TYPE /posdw/package_id,
+        lr_hdxx_add           TYPE REF TO /posdw/badi_id_fib_hdxx_add,
+        l_one_header_per_item TYPE boole_d.
+
+  /posdw/cl_parameter_read=>check_instance( CHANGING c_instance = ir_parameters ).
+  l_one_header_per_item = ir_parameters->get_value( 'ONE_HEADER_PER_ITEM' ).
+
+  TRY.
+      DESCRIBE TABLE it_transactions LINES l_lines.
+      IF l_lines EQ 0.
+        RAISE EXCEPTION
+          TYPE
+          /posdw/cx_output_error
+          EXPORTING
+            messageclass  = '/POSDW/OUTPUT'
+            messagenumber = '000'
+            messagetype   = 'E'.
+      ENDIF.
+      IF NOT i_reversal IS INITIAL.
+        RAISE EXCEPTION
+          TYPE
+          /posdw/cx_output_error
+          EXPORTING
+            messageclass  = '/POSDW/OUTPUT'
+            messagenumber = '062'
+            messagetype   = 'W'.
+      ENDIF.
+*Setup sender for idoc control record
+      READ TABLE it_transactions INTO l_transaction INDEX 1.
+      l_sndprn = l_transaction-retailstoreid.
+
+* Create Package ID to Link with ERP idoc
+      TRY .
+          GET BADI lr_hdxx_add.
+
+          CALL BADI lr_hdxx_add->get_package_id
+            IMPORTING
+              ev_package_id = lv_package_id.
+
+        CATCH cx_badi_not_implemented.                  "#EC NO_HANDLER
+          " no handling needed
+
+      ENDTRY.
+
+*-----------------------------------------------------------
+*Convert data from BAPI to idoc format
+*-----------------------------------------------------------
+      LOOP AT it_transactions INTO l_transaction
+        WHERE financialmovement IS NOT INITIAL.
+*       Check if no other store is affected
+*       AT NEW l_transaction-retailstoreid.
+        IF l_old_retailstoreid NE l_transaction-retailstoreid.
+          IF l_old_retailstoreid IS NOT INITIAL.
+            RAISE EXCEPTION
+              TYPE
+              /posdw/cx_output_error
+              EXPORTING
+                messagetype   = 'E'
+                messageclass  = '/POSDW/OUTPUT'
+                messagenumber = '007'.
+          ENDIF.
+          l_old_retailstoreid = l_transaction-retailstoreid.
+        ENDIF.
+        IF l_transaction-businesstype NE '3'.
+          RAISE EXCEPTION
+            TYPE
+            /posdw/cx_output_error
+            EXPORTING
+              messagetype   = 'E'
+              messageclass  = '/POSDW/OUTPUT'
+              messagenumber = '014'.
+        ENDIF.
+* Idoc line item record and corresponding headers:
+        PERFORM map_e1wpf02 USING    l_transaction-financialmovement
+                                     l_transaction-transaction_fi
+                                     l_one_header_per_item
+                                     lv_package_id
+                            CHANGING lr_edidd
+                                     lt_edidd.
+      ENDLOOP.                       "AT t_transactions
+      IF lt_edidd IS NOT INITIAL.
+*       Send data if this is the last transaction
+        CREATE OBJECT lr_idoc.
+        lr_idoc->create_and_send(
+          EXPORTING
+            i_retailstoreid = l_sndprn
+            i_idoctype      = gc_idoctype
+            i_messagetype   = gc_messagetype
+            ir_parameters   = ir_parameters
+            it_edidd        = lt_edidd
+            it_transactions = it_transactions[]
+          IMPORTING
+            et_objectlink   = et_objectlink[] ).
+      ENDIF.
+    CATCH /posdw/cx_message_check INTO lr_message_check.
+      CLEAR: et_message.
+      lr_message_check->create_message( IMPORTING o_message = et_message ).
+      INSERT et_message INTO TABLE et_message.
+  ENDTRY.
+ENDFUNCTION.
