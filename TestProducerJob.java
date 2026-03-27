@@ -6,6 +6,8 @@ import org.apache.flink.connector.kafka.sink.KafkaSink;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.zip.GZIPOutputStream;
 
@@ -32,12 +34,16 @@ public class TestProducerJob {
     // Сколько раз отправить (2 = отправит дубль для проверки дедупликации)
     private static final int SEND_COUNT = 2;
 
-    // Вставь сюда XML из raw_table_audit
-    private static final String TEST_XML = ""
-            + "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-            + "<POSDW_POSTR_CREATEMULTIPLE02>"
-            + "  ВСТАВЬ СЮДА СВОЙ XML"
-            + "</POSDW_POSTR_CREATEMULTIPLE02>";
+    // XML читается из файла src/main/resources/test.xml (попадает в JAR)
+    private static final String TEST_XML;
+    static {
+        try (InputStream is = TestProducerJob.class.getResourceAsStream("/test.xml")) {
+            if (is == null) throw new RuntimeException("test.xml not found in resources!");
+            TEST_XML = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            throw new RuntimeException("Cannot read test.xml", e);
+        }
+    }
 
     // ===================================
 
