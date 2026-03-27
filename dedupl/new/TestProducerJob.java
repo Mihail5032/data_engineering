@@ -1,7 +1,6 @@
 package ru.x5;
 
 import org.apache.flink.api.common.functions.RichMapFunction;
-import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -55,11 +54,6 @@ public class TestProducerJob {
     // ===================================
 
     public static class KafkaSenderFunction extends RichMapFunction<String, String> {
-
-        @Override
-        public void open(Configuration parameters) throws Exception {
-            super.open(parameters);
-        }
 
         @Override
         public String map(String value) throws Exception {
