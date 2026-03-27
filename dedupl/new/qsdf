@@ -1,24 +1,29 @@
 WITH CNT AS (
     SELECT 
-        retailstoreid, 
-        businessdaydate, 
-        transactiontypecode, 
-        workstationid, 
-        transactionsequencenumber, 
+        retailstoreid,
+        businessdaydate,
+        transactiontypecode,
+        workstationid,
+        transactionsequencenumber,
+        tendersequencenumber,
+        tendertypecode,
         COUNT(*) as qnty
     FROM ice_baby.core_flow_ing_raw.raw_bptender
+    WHERE DATE(businessdaydate) BETWEEN DATE '2026-03-17' AND DATE '2026-03-28'
     GROUP BY 
-        retailstoreid, 
-        businessdaydate, 
-        transactiontypecode, 
-        workstationid, 
-        transactionsequencenumber
+        retailstoreid,
+        businessdaydate,
+        transactiontypecode,
+        workstationid,
+        transactionsequencenumber,
+        tendersequencenumber,
+        tendertypecode
     HAVING COUNT(*) > 1
 )
 SELECT 
-    DATE(businessdaydate) as day,
+    tendertypecode,
     COUNT(*) as duplicate_count,
     SUM(qnty) as total_rows
 FROM CNT
-GROUP BY DATE(businessdaydate)
-ORDER BY day DESC;
+GROUP BY tendertypecode
+ORDER BY duplicate_count DESC;
