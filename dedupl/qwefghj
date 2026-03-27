@@ -1,1 +1,4 @@
 
+bootstrap.servers=kafka-kafka-bootstrap.kafka.svc.cluster.local:9092
+topic.name=xml-documents
+keytab.location=none
