@@ -1,23 +1,12 @@
-SELECT t.retailstoreid, t.businessdaydate, t.workstationid, t.transactionsequencenumber,
-       t.tendertypecode, t.tendersequencenumber, t.tender_cnt
-FROM (
-    SELECT retailstoreid, businessdaydate, workstationid, transactionsequencenumber,
-           tendertypecode, tendersequencenumber,
-           COUNT(*) as tender_cnt
+SELECT b.rtl_txn_tender_rk, b.retailstoreid, b.businessdaydate, b.workstationid,
+       b.transactionsequencenumber, b.tendersequencenumber, b.tendertypecode, 
+       b.tenderamount, b.load_ts_xml, b.is_aligned_tran
+FROM ice_baby.core_flow_ing_raw.raw_bptender b
+WHERE b.rtl_txn_tender_rk IN (
+    SELECT rtl_txn_tender_rk
     FROM ice_baby.core_flow_ing_raw.raw_bptender
-    GROUP BY retailstoreid, businessdaydate, workstationid, transactionsequencenumber,
-             tendertypecode, tendersequencenumber
+    GROUP BY rtl_txn_tender_rk
     HAVING COUNT(*) > 1
-) t
-JOIN (
-    SELECT retailstoreid, businessdaydate, workstationid, transactionsequencenumber
-    FROM ice_baby.core_flow_ing_raw.raw_bptransaction
-    GROUP BY retailstoreid, businessdaydate, workstationid, transactionsequencenumber
-    HAVING COUNT(*) = 1
-) tx
-ON t.retailstoreid = tx.retailstoreid
-   AND t.businessdaydate = tx.businessdaydate
-   AND t.workstationid = tx.workstationid
-   AND t.transactionsequencenumber = tx.transactionsequencenumber
-ORDER BY t.tender_cnt DESC
-LIMIT 10;
+    LIMIT 1
+)
+ORDER BY b.load_ts_xml;
