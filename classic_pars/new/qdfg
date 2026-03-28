@@ -1,7 +1,21 @@
-
-SELECT tendertypecode, COUNT(*) as total_rows,
-       COUNT(*) - COUNT(DISTINCT CONCAT(retailstoreid,'|',businessdaydate,'|',workstationid,'|',
-           transactionsequencenumber,'|',tendersequencenumber,'|',tendertypecode)) as duplicate_rows
-FROM ice_baby.core_flow_ing_raw.raw_bptender
+WITH CNT AS (
+    SELECT
+        retailstoreid,
+        businessdaydate,
+        workstationid,
+        transactionsequencenumber,
+        tendersequencenumber,
+        tendertypecode,
+        COUNT(*) as qnty
+    FROM ice_baby.core_flow_ing_raw.raw_bptender
+    GROUP BY 1,2,3,4,5,6
+    HAVING COUNT(*) > 1
+)
+SELECT
+    tendertypecode,
+    COUNT(*) as duplicate_count,
+    SUM(qnty) as total_rows
+FROM CNT
 GROUP BY tendertypecode
-ORDER BY duplicate_rows DESC;
+ORDER BY duplicate_count DESC;
+
