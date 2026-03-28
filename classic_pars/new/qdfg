@@ -1,15 +1,9 @@
-Запрос 1 — все тендеры для конкретной транзакции (без фильтра по workstationid):
-
-SELECT retailstoreid, workstationid, transactionsequencenumber,
-       tendertypecode, tendersequencenumber, tenderamount, load_ts_xml
+SELECT retailstoreid, businessdaydate, workstationid, transactionsequencenumber,
+       tendertypecode, tenderamount, tendersequencenumber, load_ts_xml, load_ts, COUNT(*) as cnt
 FROM ice_baby.core_flow_ing_raw.raw_bptender
-WHERE retailstoreid = '34HG'
-  AND transactionsequencenumber = '100000000001805652'
-ORDER BY load_ts_xml, tendertypecode, tenderamount
-
-Запрос 2 — есть ли у этой транзакции тип 1014:
-
-SELECT retailstoreid, transactionsequencenumber, workstationid, transactiontypecode
-FROM ice_baby.core_flow_ing_raw.raw_bptransaction
-WHERE retailstoreid = '34HG'
-  AND transactionsequencenumber = '100000000001805652'
+WHERE tendertypecode = '3102'
+GROUP BY retailstoreid, businessdaydate, workstationid, transactionsequencenumber,
+         tendertypecode, tenderamount, tendersequencenumber, load_ts_xml, load_ts
+HAVING COUNT(*) > 1
+ORDER BY cnt DESC
+LIMIT 10;
