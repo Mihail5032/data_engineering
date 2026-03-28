@@ -1,9 +1,12 @@
 SELECT retailstoreid, businessdaydate, workstationid, transactionsequencenumber,
-       tendertypecode, tenderamount, tendersequencenumber, load_ts_xml, load_ts, COUNT(*) as cnt
+       tendertypecode, tenderamount, tendersequencenumber,
+       COUNT(*) as cnt,
+       COUNT(DISTINCT load_ts_xml) as distinct_load_ts_xml
 FROM ice_baby.core_flow_ing_raw.raw_bptender
 WHERE tendertypecode = '3102'
 GROUP BY retailstoreid, businessdaydate, workstationid, transactionsequencenumber,
-         tendertypecode, tenderamount, tendersequencenumber, load_ts_xml, load_ts
+         tendertypecode, tenderamount, tendersequencenumber
 HAVING COUNT(*) > 1
 ORDER BY cnt DESC
 LIMIT 10;
+
