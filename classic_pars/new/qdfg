@@ -1,19 +1,5 @@
-WITH tender_dupl AS (
-    SELECT rtl_txn_tender_rk
-    FROM ice_baby.core_flow_ing_raw.raw_bptender
-    GROUP BY rtl_txn_tender_rk
-    HAVING COUNT(*) > 1
-),
-txn_dupl AS (
-    SELECT rtl_txn_rk
-    FROM ice_baby.core_flow_ing_raw.raw_bptransaction
-    GROUP BY rtl_txn_rk
-    HAVING COUNT(*) > 1
-)
-SELECT td.rtl_txn_tender_rk, COUNT(*) as cnt
-FROM ice_baby.core_flow_ing_raw.raw_bptender td
-JOIN tender_dupl ON td.rtl_txn_tender_rk = tender_dupl.rtl_txn_tender_rk
-WHERE td.rtl_txn_rk NOT IN (SELECT rtl_txn_rk FROM txn_dupl)
-GROUP BY td.rtl_txn_tender_rk
-ORDER BY cnt DESC
-LIMIT 20;
+SELECT load_ts_xml, COUNT(DISTINCT transactionsequencenumber) as txn_count
+FROM ice_baby.core_flow_ing_raw.raw_bptransaction
+GROUP BY load_ts_xml
+HAVING COUNT(DISTINCT transactionsequencenumber) > 1
+LIMIT 10;
