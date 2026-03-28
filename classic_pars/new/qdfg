@@ -1,10 +1,6 @@
-SELECT retailstoreid, businessdaydate, workstationid, transactionsequencenumber,
-       tendersequencenumber, tendertypecode, tenderamount,
-       COUNT(*) as cnt
+SELECT load_ts_xml, COUNT(*) as cnt
 FROM ice_baby.core_flow_ing_raw.raw_bptender
 WHERE tendertypecode = '3102'
   AND retailstoreid = '3305'
   AND transactionsequencenumber = '100000000002931902'
-GROUP BY retailstoreid, businessdaydate, workstationid, transactionsequencenumber,
-         tendersequencenumber, tendertypecode, tenderamount, load_ts_xml
 ORDER BY load_ts_xml;
