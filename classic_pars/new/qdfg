@@ -1,5 +1,9 @@
-SELECT MIN(load_ts_xml) as first_record,
-       MAX(load_ts_xml) as last_record,
-       COUNT(*) as total,
-       COUNT(DISTINCT load_ts_xml) as distinct_timestamps
-FROM ice_baby.core_flow_ing_raw.raw_bptender;
+SELECT 'transaction' as tbl, COUNT(*) as cnt
+FROM ice_baby.core_flow_ing_raw.raw_bptransaction
+WHERE retailstoreid = '3305'
+  AND transactionsequencenumber = '100000000002931902'
+UNION ALL
+SELECT 'tender' as tbl, COUNT(*) as cnt
+FROM ice_baby.core_flow_ing_raw.raw_bptender
+WHERE retailstoreid = '3305'
+  AND transactionsequencenumber = '100000000002931902';
