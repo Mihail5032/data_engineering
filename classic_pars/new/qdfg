@@ -1,22 +1,20 @@
 WITH dupes AS (
     SELECT retailstoreid, businessdaydate, workstationid,
-           transactionsequencenumber, tendersequencenumber
+           transactionsequencenumber
     FROM ice_baby.core_flow_ing_raw.raw_bptender
     WHERE tendertypecode = '3101'
-    GROUP BY 1,2,3,4,5
+    GROUP BY 1,2,3,4
     HAVING COUNT(*) > 1
     LIMIT 5
 )
 SELECT a.retailstoreid, a.businessdaydate, a.workstationid,
        a.transactionsequencenumber, a.tendersequencenumber,
-       a.tenderamount, a.load_ts_xml
+       a.tenderamount, a.tendertypecode, a.load_ts_xml
 FROM ice_baby.core_flow_ing_raw.raw_bptender a
 JOIN dupes d
   ON a.retailstoreid = d.retailstoreid
  AND a.businessdaydate = d.businessdaydate
  AND a.workstationid = d.workstationid
  AND a.transactionsequencenumber = d.transactionsequencenumber
- AND a.tendersequencenumber = d.tendersequencenumber
-WHERE a.tendertypecode = '3101'
-ORDER BY a.retailstoreid, a.transactionsequencenumber, a.tenderamount
+ORDER BY a.retailstoreid, a.transactionsequencenumber, a.tendertypecode, a.tendersequencenumber
 
