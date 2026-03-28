@@ -1,10 +1,22 @@
-WITH CNT AS (
+SELECT t.retailstoreid, t.businessdaydate, t.workstationid, t.transactionsequencenumber,
+       t.tender_cnt, t.distinct_load_ts
+FROM (
     SELECT retailstoreid, businessdaydate, workstationid, transactionsequencenumber,
-           COUNT(*) as qnty
+           COUNT(*) as tender_cnt,
+           COUNT(DISTINCT load_ts_xml) as distinct_load_ts
+    FROM ice_baby.core_flow_ing_raw.raw_bptender
+    GROUP BY retailstoreid, businessdaydate, workstationid, transactionsequencenumber
+    HAVING COUNT(*) > 2
+) t
+JOIN (
+    SELECT retailstoreid, businessdaydate, workstationid, transactionsequencenumber
     FROM ice_baby.core_flow_ing_raw.raw_bptransaction
     GROUP BY retailstoreid, businessdaydate, workstationid, transactionsequencenumber
-    HAVING COUNT(*) > 1
-)
-SELECT COUNT(*) as duplicate_count, SUM(qnty) as total_rows
-FROM CNT;
-
+    HAVING COUNT(*) = 1
+) tx
+ON t.retailstoreid = tx.retailstoreid
+   AND t.businessdaydate = tx.businessdaydate
+   AND t.workstationid = tx.workstationid
+   AND t.transactionsequencenumber = tx.transactionsequencenumber
+ORDER BY t.tender_cnt DESC
+LIMIT 5;
