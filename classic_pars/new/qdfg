@@ -1,1 +1,7 @@
 
+SELECT tendertypecode, COUNT(*) as total_rows,
+       COUNT(*) - COUNT(DISTINCT CONCAT(retailstoreid,'|',businessdaydate,'|',workstationid,'|',
+           transactionsequencenumber,'|',tendersequencenumber,'|',tendertypecode)) as duplicate_rows
+FROM ice_baby.core_flow_ing_raw.raw_bptender
+GROUP BY tendertypecode
+ORDER BY duplicate_rows DESC;
