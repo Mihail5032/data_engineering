@@ -1,6 +1,1 @@
-SELECT load_ts_xml, COUNT(*) as cnt
-FROM ice_baby.core_flow_ing_raw.raw_bptender
-WHERE tendertypecode = '3102'
-  AND retailstoreid = '3305'
-  AND transactionsequencenumber = '100000000002931902'
-ORDER BY load_ts_xml;
+SQL Error [73]: Query failed (#20260328_155929_00022_64scu): line 2:8: 'load_ts_xml' must be an aggregate expression or appear in GROUP BY clause
