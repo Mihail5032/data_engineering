@@ -1,1 +1,5 @@
-SQL Error [73]: Query failed (#20260328_155929_00022_64scu): line 2:8: 'load_ts_xml' must be an aggregate expression or appear in GROUP BY clause
+SELECT MIN(load_ts_xml) as first_record,
+       MAX(load_ts_xml) as last_record,
+       COUNT(*) as total,
+       COUNT(DISTINCT load_ts_xml) as distinct_timestamps
+FROM ice_baby.core_flow_ing_raw.raw_bptender;
