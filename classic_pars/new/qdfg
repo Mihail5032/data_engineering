@@ -1,10 +1,4 @@
-SELECT a.retailstoreid, a.businessdaydate, a.workstationid,
-       a.transactionsequencenumber, a.tendersequencenumber,
-       a.tenderamount, a.load_ts_xml
-FROM ice_baby.core_flow_ing_raw.raw_bptender a
-WHERE a.tendertypecode = '3101'
-  AND (a.retailstoreid, a.businessdaydate, a.workstationid,
-       a.transactionsequencenumber, a.tendersequencenumber) IN (
+WITH dupes AS (
     SELECT retailstoreid, businessdaydate, workstationid,
            transactionsequencenumber, tendersequencenumber
     FROM ice_baby.core_flow_ing_raw.raw_bptender
@@ -13,4 +7,16 @@ WHERE a.tendertypecode = '3101'
     HAVING COUNT(*) > 1
     LIMIT 5
 )
-ORDER BY a.retailstoreid, a.transactionsequencenumber, a.tenderamount;
+SELECT a.retailstoreid, a.businessdaydate, a.workstationid,
+       a.transactionsequencenumber, a.tendersequencenumber,
+       a.tenderamount, a.load_ts_xml
+FROM ice_baby.core_flow_ing_raw.raw_bptender a
+JOIN dupes d
+  ON a.retailstoreid = d.retailstoreid
+ AND a.businessdaydate = d.businessdaydate
+ AND a.workstationid = d.workstationid
+ AND a.transactionsequencenumber = d.transactionsequencenumber
+ AND a.tendersequencenumber = d.tendersequencenumber
+WHERE a.tendertypecode = '3101'
+ORDER BY a.retailstoreid, a.transactionsequencenumber, a.tenderamount
+
