@@ -1,17 +1,15 @@
-WITH dup_txns AS (
-    SELECT retailstoreid, businessdaydate, workstationid, transactionsequencenumber
-    FROM ice_baby.core_flow_ing_raw.raw_bptender
-    WHERE tendertypecode = '3101'
-    GROUP BY 1,2,3,4
-    HAVING COUNT(*) > 1
-    LIMIT 5
-)
-SELECT d.retailstoreid, d.transactionsequencenumber,
-       t.tendertypecode, t.tendersequencenumber, t.tenderamount
-FROM dup_txns d
-JOIN ice_baby.core_flow_ing_raw.raw_bptender t
-  ON d.retailstoreid = t.retailstoreid
- AND d.businessdaydate = t.businessdaydate
- AND d.workstationid = t.workstationid
- AND d.transactionsequencenumber = t.transactionsequencenumber
-ORDER BY d.retailstoreid, d.transactionsequencenumber, t.tendertypecode
+Запрос 1 — все тендеры для конкретной транзакции (без фильтра по workstationid):
+
+SELECT retailstoreid, workstationid, transactionsequencenumber,
+       tendertypecode, tendersequencenumber, tenderamount, load_ts_xml
+FROM ice_baby.core_flow_ing_raw.raw_bptender
+WHERE retailstoreid = '34HG'
+  AND transactionsequencenumber = '100000000001805652'
+ORDER BY load_ts_xml, tendertypecode, tenderamount
+
+Запрос 2 — есть ли у этой транзакции тип 1014:
+
+SELECT retailstoreid, transactionsequencenumber, workstationid, transactiontypecode
+FROM ice_baby.core_flow_ing_raw.raw_bptransaction
+WHERE retailstoreid = '34HG'
+  AND transactionsequencenumber = '100000000001805652'
