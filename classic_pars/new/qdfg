@@ -10,3 +10,31 @@ WHERE b.rtl_txn_tender_rk IN (
     LIMIT 1
 )
 ORDER BY b.load_ts_xml;
+
+
+SELECT b.rtl_txn_tender_rk, b.retailstoreid, b.businessdaydate, b.workstationid,
+       b.transactionsequencenumber, b.tendersequencenumber, b.tendertypecode, 
+       b.tenderamount, b.load_ts_xml, b.is_aligned_tran
+FROM ice_baby.core_flow_ing_raw.raw_bptender b
+WHERE b.rtl_txn_tender_rk IN (
+    SELECT rtl_txn_tender_rk
+    FROM ice_baby.core_flow_ing_raw.raw_bptender
+    GROUP BY rtl_txn_tender_rk
+    HAVING COUNT(*) > 1
+    LIMIT 1
+)
+AND NOT EXISTS (
+    SELECT 1
+    FROM (
+        SELECT retailstoreid, businessdaydate, workstationid, transactionsequencenumber
+        FROM ice_baby.core_flow_ing_raw.raw_bptransaction
+        GROUP BY retailstoreid, businessdaydate, workstationid, transactionsequencenumber
+        HAVING COUNT(*) > 1
+    ) dup
+    WHERE dup.retailstoreid = b.retailstoreid
+      AND dup.businessdaydate = b.businessdaydate
+      AND dup.workstationid = b.workstationid
+      AND dup.transactionsequencenumber = b.transactionsequencenumber
+)
+ORDER BY b.load_ts_xml;
+
