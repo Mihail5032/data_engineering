@@ -93,6 +93,7 @@ public class TenderPstProcessor {
                             null,
                             null
                     );
+                    tender.setTransactionSequenceNumber(x.transactionSequenceNumber);
                     tender.setWorkstationId(isVprokExpress ? "0000001002" : x.workstationId);
                     tender.setRetailStoreId(x.retailStoreId);
                     tender.setBusinessDayDate(x.businessDayDate);
@@ -138,6 +139,7 @@ public class TenderPstProcessor {
                             null,
                             null
                     );
+                    tender.setTransactionSequenceNumber(x.transactionSequenceNumber);
                     tender.setWorkstationId(isVprokExpress ? "0000001002" : x.workstationId);
                     tender.setRetailStoreId(x.retailStoreId);
                     tender.setBusinessDayDate(x.businessDayDate);
