@@ -1,5 +1,6 @@
-SELECT tendertypecode, tenderamount, tendersequencenumber, load_ts_xml
+SELECT rtl_txn_tender_rk, COUNT(*) as cnt
 FROM ice_baby.core_flow_ing_raw.raw_bptender
-WHERE retailstoreid = 'Q915'
-  AND transactionsequencenumber = '100000000002979015'
-ORDER BY tendertypecode, tendersequencenumber;
+GROUP BY rtl_txn_tender_rk
+HAVING COUNT(*) > 1
+ORDER BY cnt DESC
+LIMIT 10;
