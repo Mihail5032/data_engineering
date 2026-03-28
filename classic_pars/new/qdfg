@@ -1,22 +1,17 @@
-WITH CNT AS (
-    SELECT
-        retailstoreid,
-        businessdaydate,
-        workstationid,
-        transactionsequencenumber,
-        tendersequencenumber,
-        tendertypecode,
-        COUNT(*) as qnty
+WITH dup_txns AS (
+    SELECT retailstoreid, businessdaydate, workstationid, transactionsequencenumber
     FROM ice_baby.core_flow_ing_raw.raw_bptender
-    GROUP BY 1,2,3,4,5,6
+    WHERE tendertypecode = '3101'
+    GROUP BY 1,2,3,4
     HAVING COUNT(*) > 1
+    LIMIT 5
 )
-SELECT
-    tendertypecode,
-    tendersequencenumber,
-    COUNT(*) as duplicate_count,
-    SUM(qnty) as total_rows
-FROM CNT
-GROUP BY tendertypecode, tendersequencenumber
-ORDER BY duplicate_count DESC
-
+SELECT d.retailstoreid, d.transactionsequencenumber,
+       t.tendertypecode, t.tendersequencenumber, t.tenderamount
+FROM dup_txns d
+JOIN ice_baby.core_flow_ing_raw.raw_bptender t
+  ON d.retailstoreid = t.retailstoreid
+ AND d.businessdaydate = t.businessdaydate
+ AND d.workstationid = t.workstationid
+ AND d.transactionsequencenumber = t.transactionsequencenumber
+ORDER BY d.retailstoreid, d.transactionsequencenumber, t.tendertypecode
