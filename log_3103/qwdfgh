@@ -4,3 +4,11 @@ WHERE businessdaydate = '2026-03-21'
 GROUP BY rtl_txn_rk
 HAVING count(*) > 1
 LIMIT 15
+
+
+SELECT datetime, result
+FROM ice_baby.core_flow_ing_raw.raw_table_audit
+WHERE datetime LIKE '%Mar 30%'
+AND result LIKE '%<RETAILSTOREID>30SP</RETAILSTOREID>%'
+AND result LIKE '%<TRANSACTIONSEQUENCENUMBER>100000000003724806</TRANSACTIONSEQUENCENUMBER>%'
+LIMIT 1
