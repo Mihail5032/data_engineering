@@ -1,1 +1,814 @@
 
+[ERROR] COMPILATION ERROR :
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[35,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[36,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[38,19] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[39,19] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[40,19] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[41,19] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[42,19] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[43,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[44,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[45,23] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[46,23] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[47,23] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[49,26] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[51,12] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[53,68] <identifier> expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[54,11] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[56,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[59,12] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[61,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[62,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[63,5] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[66,12] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[68,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[69,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[70,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[71,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[73,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[74,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[75,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[76,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[77,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[78,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[81,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[82,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[83,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[84,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[85,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[86,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[87,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[89,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[91,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[92,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[93,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[94,5] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[97,12] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[99,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[100,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[101,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[104,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[106,17] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[107,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[108,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[111,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[112,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[114,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[116,17] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[118,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[123,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[125,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[127,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[129,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[131,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[137,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[138,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[139,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[143,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[145,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[146,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[154,21] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[155,21] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[156,21] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[157,21] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[160,21] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[162,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[164,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[165,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[166,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[172,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[173,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[174,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[175,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[176,21] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[181,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[183,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[184,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[185,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[191,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[193,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[194,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[195,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[199,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[201,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[203,33] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[205,33] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[206,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[212,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[214,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[215,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[217,33] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[218,29] class, interface, or enum expected
+[INFO] 100 errors
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.896 s
+[INFO] Finished at: 2026-03-31T12:53:54+03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (default-compile) on project
+ xml-parser-correction: Compilation failure: Compilation failure:
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[35,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[36,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[38,19] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[39,19] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[40,19] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[41,19] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[42,19] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[43,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[44,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[45,23] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[46,23] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[47,23] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[49,26] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[51,12] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[53,68] <identifier> expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[54,11] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[56,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[59,12] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[61,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[62,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[63,5] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[66,12] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[68,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[69,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[70,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[71,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[73,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[74,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[75,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[76,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[77,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[78,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[81,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[82,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[83,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[84,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[85,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[86,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[87,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[89,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[91,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[92,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[93,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[94,5] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[97,12] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[99,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[100,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[101,9] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[104,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[106,17] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[107,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[108,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[111,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[112,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[114,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[116,17] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[118,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[123,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[125,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[127,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[129,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[131,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[137,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[138,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[139,13] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[143,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[145,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[146,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[154,21] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[155,21] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[156,21] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[157,21] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[160,21] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[162,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[164,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[165,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[166,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[172,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[173,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[174,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[175,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[176,21] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[181,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[183,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[184,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[185,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[191,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[193,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[194,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[195,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[199,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[201,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[203,33] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[205,33] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[206,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[212,25] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[214,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[215,29] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[217,33] class, interface, or enum expected
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[218,29] class, interface, or enum expected
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+C:\Users\Mikha.Shishkanov\flink-jobs\xml-parser-correction>mvn clean package -DskipTests
+[INFO] Scanning for projects...
+[INFO]
+[INFO] --------------------< ru.x5:xml-parser-correction >---------------------
+[INFO] Building xml-parser-correction 1.0.6
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] 2 problems were encountered while building the effective model for org.apache.yetus:audience-annotations:jar:0.5.0 during dependency collection step for project (use -X to see details)
+[WARNING] The artifact org.lz4:lz4-java:jar:1.8.1 has been relocated to at.yawk.lz4:lz4-java:jar:1.8.1
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ xml-parser-correction ---
+[INFO] Deleting C:\Users\Mikha.Shishkanov\flink-jobs\xml-parser-correction\target
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ xml-parser-correction ---
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.8.1:compile (default-compile) @ xml-parser-correction ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 40 source files to C:\Users\Mikha.Shishkanov\flink-jobs\xml-parser-correction\target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR :
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/DataStreamJob.java:[21,21] cannot access ru.x5.process.RawDataProcessFunction
+  bad source file: C:\Users\Mikha.Shishkanov\flink-jobs\xml-parser-correction\src\main\java\ru\x5\process\RawDataProcessFunction.java
+    file does not contain class ru.x5.process.RawDataProcessFunction
+    Please remove or make sure it appears in the correct subdirectory of the sourcepath.
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[12,8] class TransactionCorrector is public, should be declared in a file named TransactionCorrector.java
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/RowTablePart.java:[248,31] cannot find symbol
+  symbol:   class RowTablePartBuilder
+  location: class ru.x5.model.RowTablePart
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[4,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[5,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[12,22] cannot find symbol
+  symbol:   class Logger
+  location: class ru.x5.process.TransactionCorrector
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/DeduplicationFilter.java:[9,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/DeduplicationFilter.java:[10,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/DeduplicationFilter.java:[24,26] cannot find symbol
+  symbol:   class Logger
+  location: class ru.x5.process.DeduplicationFilter
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/DeduplicationKeyExtractor.java:[4,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/DeduplicationKeyExtractor.java:[5,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/DeduplicationKeyExtractor.java:[24,26] cannot find symbol
+  symbol:   class Logger
+  location: class ru.x5.process.DeduplicationKeyExtractor
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[3,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[4,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/BaseTransactionKey.java:[40,34] cannot find symbol
+  symbol:   method builder()
+  location: class ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/BaseTransactionKey.java:[50,28] cannot find symbol
+  symbol:   method builder()
+  location: class ru.x5.model.RowTablePart
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/RowTablePart.java:[249,28] cannot find symbol
+  symbol:   method builder()
+  location: class ru.x5.model.RowTablePart
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/SourceDocument.java:[32,28] cannot find symbol
+  symbol:   method builder()
+  location: class ru.x5.model.RowTablePart
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[21,18] cannot find symbol
+  symbol:   method getFieldValue()
+  location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[21,47] cannot find symbol
+  symbol:   method getFieldName()
+  location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[22,26] cannot find symbol
+  symbol:   method getFieldValue()
+  location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[22,64] cannot find symbol
+  symbol:   method getFieldValue()
+  location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[22,102] cannot find symbol
+  symbol:   method getFieldName()
+  location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[22,145] cannot find symbol
+  symbol:   method getFieldName()
+  location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[28,47] cannot find symbol
+  symbol:   method getFieldName()
+  location: variable tenderExtension of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[30,62] cannot find symbol
+  symbol:   method getFieldValue()
+  location: variable tenderExtension of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtension.java:[45,54] cannot find symbol
+  symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/Transaction.java:[54,54] cannot find symbol
+  symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/RetailLineItem.java:[93,54] cannot find symbol
+  symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/LineItemTax.java:[37,54] cannot find symbol
+  symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TransactionDiscount.java:[55,54] cannot find symbol
+  symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/LineItemDiscount.java:[52,54] cannot find symbol
+  symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/LineItemDiscExt.java:[42,54] cannot find symbol
+  symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/LineItemExtension.java:[43,54] cannot find symbol
+  symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TransactionExtension.java:[42,54] cannot find symbol
+  symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TransactDiscExt.java:[42,54] cannot find symbol
+  symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[26,18] cannot find symbol
+  symbol:   method getRetailStoreId()
+  location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[26,54] cannot find symbol
+  symbol:   method getRetailStoreId()
+  location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[27,21] cannot find symbol
+  symbol:   method getBusinessDayDate()
+  location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[27,59] cannot find symbol
+  symbol:   method getBusinessDayDate()
+  location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[28,21] cannot find symbol
+  symbol:   method getWorkstationId()
+  location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[28,57] cannot find symbol
+  symbol:   method getWorkstationId()
+  location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[29,21] cannot find symbol
+  symbol:   method getTransactionSequenceNumber()
+  location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[29,69] cannot find symbol
+  symbol:   method getTransactionSequenceNumber()
+  location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[53,31] cannot find symbol
+  symbol:   method getFieldName()
+  location: variable x of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[53,59] cannot find symbol
+  symbol:   method getFieldName()
+  location: variable x of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[54,33] cannot find symbol
+  symbol:   method getFieldValue()
+  location: variable x of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[54,62] cannot find symbol
+  symbol:   method getFieldValue()
+  location: variable x of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[58,31] cannot find symbol
+  symbol:   method getSalesAmount()
+  location: variable x of type ru.x5.model.RetailLineItem
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[60,62] invalid method reference
+  cannot find symbol
+    symbol:   method getSalesAmount()
+    location: class ru.x5.model.RetailLineItem
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[63,31] cannot find symbol
+  symbol:   method getTenderAmount()
+  location: variable x of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[65,62] invalid method reference
+  cannot find symbol
+    symbol:   method getTenderAmount()
+    location: class ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[73,45] cannot find symbol
+  symbol:   method getTransactionTypeCode()
+  location: variable x of type ru.x5.model.Transaction
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[107,25] constructor Tender in class ru.x5.model.Tender cannot be applied to given types;
+  required: no arguments
+  found: java.lang.String,java.lang.String,java.math.BigDecimal,<nulltype>,<nulltype>,<nulltype>,<nulltype>,<nulltype>
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[117,15] cannot find symbol
+  symbol:   method setTransactionSequenceNumber(java.lang.String)
+  location: variable tender of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[118,15] cannot find symbol
+  symbol:   method setWorkstationId(isVprokExp[...]ionId)
+  location: variable tender of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[119,15] cannot find symbol
+  symbol:   method setRetailStoreId(java.lang.String)
+  location: variable tender of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[120,15] cannot find symbol
+  symbol:   method setBusinessDayDate(java.lang.String)
+  location: variable tender of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[121,15] cannot find symbol
+  symbol:   method setTransactionTypeCode(java.lang.String)
+  location: variable tender of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[130,31] cannot find symbol
+  symbol:   method getFieldName()
+  location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[130,59] cannot find symbol
+  symbol:   method getFieldName()
+  location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[131,33] cannot find symbol
+  symbol:   method getFieldValue()
+  location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[131,62] cannot find symbol
+  symbol:   method getFieldValue()
+  location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[134,36] cannot find symbol
+  symbol:   method getTenderTypeCode()
+  location: variable x of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[135,22] cannot find symbol
+  symbol:   method setTenderTypeCode(java.lang.String)
+  location: variable x of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[12,35] cannot find symbol
+  symbol:   variable LogManager
+  location: class ru.x5.process.TransactionCorrector
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[17,50] cannot find symbol
+  symbol:   method getIdoc()
+  location: variable doc of type ru.x5.model.IDocWrapper
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[19,49] cannot find symbol
+  symbol:   method getTenders()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[20,65] cannot find symbol
+  symbol:   method getRetailLineItems()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[23,52] cannot find symbol
+  symbol:   method getTransactionExtensions()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[30,53] cannot find symbol
+  symbol:   method getFinancialMovemen()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[31,53] cannot find symbol
+  symbol:   method getFinacialMovement()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[32,53] cannot find symbol
+  symbol:   method getLineItemDiscExtensions()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[33,53] cannot find symbol
+  symbol:   method getLineItemDiscounts()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[34,53] cannot find symbol
+  symbol:   method getLineItemExtensions()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[35,53] cannot find symbol
+  symbol:   method getLineItemTaxes()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[36,53] cannot find symbol
+  symbol:   method getRetailLineItems()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[37,53] cannot find symbol
+  symbol:   method getRetailTotals()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[38,53] cannot find symbol
+  symbol:   method getTenders()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[39,53] cannot find symbol
+  symbol:   method getTenderExtensions()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[40,53] cannot find symbol
+  symbol:   method getTenderTotals()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[41,53] cannot find symbol
+  symbol:   method getTransactDiscExts()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[42,53] cannot find symbol
+  symbol:   method getTransactions()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[43,53] cannot find symbol
+  symbol:   method getTransactionDiscounts()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[44,53] cannot find symbol
+  symbol:   method getTransactionExtensions()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[45,53] cannot find symbol
+  symbol:   method getLineItemVoids()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[46,53] cannot find symbol
+  symbol:   method getPostVoidDetails()
+  location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[53,37] cannot find symbol
+  symbol:   method getFieldName()
+  location: variable transactionExtension of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[53,82] cannot find symbol
+  symbol:   method getFieldValue()
+  location: variable transactionExtension of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[54,41] cannot find symbol
+  symbol:   method getFieldName()
+  location: variable transactionExtension of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[55,41] cannot find symbol
+  symbol:   method getFieldValue()
+  location: variable transactionExtension of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[62,31] cannot find symbol
+  symbol:   method setWorkstationId(java.lang.String)
+  location: variable transactionKey of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[85,49] cannot find symbol
+  symbol:   method getRetailTypeCode()
+  location: variable retailLineItem of type ru.x5.model.RetailLineItem
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[85,96] cannot find symbol
+  symbol:   method getSalesAmount()
+  location: variable retailLineItem of type ru.x5.model.RetailLineItem
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[86,34] cannot find symbol
+  symbol:   method getSalesAmount()
+  location: variable retailLineItem of type ru.x5.model.RetailLineItem
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[92,55] cannot find symbol
+  symbol:   method builder()
+  location: class ru.x5.model.RetailLineItem
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[93,35] cannot find symbol
+  symbol:   method getRetailStoreId()
+  location: variable key of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[94,37] cannot find symbol
+  symbol:   method getBusinessDayDate()
+  location: variable key of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[95,41] cannot find symbol
+  symbol:   method getTransactionTypeCode()
+  location: variable key of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[96,35] cannot find symbol
+  symbol:   method getWorkstationId()
+  location: variable key of type ru.x5.model.BaseTransactionKey
+[INFO] 100 errors
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.179 s
+[INFO] Finished at: 2026-03-31T12:58:21+03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (default-compile) on project
+ xml-parser-correction: Compilation failure: Compilation failure:
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/DataStreamJob.java:[21,21] cannot access ru.x5.process.RawDataProcessFunction
+[ERROR]   bad source file: C:\Users\Mikha.Shishkanov\flink-jobs\xml-parser-correction\src\main\java\ru\x5\process\RawDataProcessFunction.java
+[ERROR]     file does not contain class ru.x5.process.RawDataProcessFunction
+[ERROR]     Please remove or make sure it appears in the correct subdirectory of the sourcepath.
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[12,8] class TransactionCorrector is public, should be declared in a file named TransactionCorrector.java
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/RowTablePart.java:[248,31] cannot find symbol
+[ERROR]   symbol:   class RowTablePartBuilder
+[ERROR]   location: class ru.x5.model.RowTablePart
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[4,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[5,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[12,22] cannot find symbol
+[ERROR]   symbol:   class Logger
+[ERROR]   location: class ru.x5.process.TransactionCorrector
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/DeduplicationFilter.java:[9,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/DeduplicationFilter.java:[10,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/DeduplicationFilter.java:[24,26] cannot find symbol
+[ERROR]   symbol:   class Logger
+[ERROR]   location: class ru.x5.process.DeduplicationFilter
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/DeduplicationKeyExtractor.java:[4,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/DeduplicationKeyExtractor.java:[5,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/DeduplicationKeyExtractor.java:[24,26] cannot find symbol
+[ERROR]   symbol:   class Logger
+[ERROR]   location: class ru.x5.process.DeduplicationKeyExtractor
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[3,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/RawDataProcessFunction.java:[4,32] package org.apache.logging.log4j does not exist
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/BaseTransactionKey.java:[40,34] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/BaseTransactionKey.java:[50,28] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class ru.x5.model.RowTablePart
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/RowTablePart.java:[249,28] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class ru.x5.model.RowTablePart
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/SourceDocument.java:[32,28] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class ru.x5.model.RowTablePart
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[21,18] cannot find symbol
+[ERROR]   symbol:   method getFieldValue()
+[ERROR]   location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[21,47] cannot find symbol
+[ERROR]   symbol:   method getFieldName()
+[ERROR]   location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[22,26] cannot find symbol
+[ERROR]   symbol:   method getFieldValue()
+[ERROR]   location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[22,64] cannot find symbol
+[ERROR]   symbol:   method getFieldValue()
+[ERROR]   location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[22,102] cannot find symbol
+[ERROR]   symbol:   method getFieldName()
+[ERROR]   location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[22,145] cannot find symbol
+[ERROR]   symbol:   method getFieldName()
+[ERROR]   location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[28,47] cannot find symbol
+[ERROR]   symbol:   method getFieldName()
+[ERROR]   location: variable tenderExtension of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtPstProcessor.java:[30,62] cannot find symbol
+[ERROR]   symbol:   method getFieldValue()
+[ERROR]   location: variable tenderExtension of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderExtension.java:[45,54] cannot find symbol
+[ERROR]   symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/Transaction.java:[54,54] cannot find symbol
+[ERROR]   symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/RetailLineItem.java:[93,54] cannot find symbol
+[ERROR]   symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/LineItemTax.java:[37,54] cannot find symbol
+[ERROR]   symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TransactionDiscount.java:[55,54] cannot find symbol
+[ERROR]   symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/LineItemDiscount.java:[52,54] cannot find symbol
+[ERROR]   symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/LineItemDiscExt.java:[42,54] cannot find symbol
+[ERROR]   symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/LineItemExtension.java:[43,54] cannot find symbol
+[ERROR]   symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TransactionExtension.java:[42,54] cannot find symbol
+[ERROR]   symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TransactDiscExt.java:[42,54] cannot find symbol
+[ERROR]   symbol: method getIs_aligned_tran()
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[26,18] cannot find symbol
+[ERROR]   symbol:   method getRetailStoreId()
+[ERROR]   location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[26,54] cannot find symbol
+[ERROR]   symbol:   method getRetailStoreId()
+[ERROR]   location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[27,21] cannot find symbol
+[ERROR]   symbol:   method getBusinessDayDate()
+[ERROR]   location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[27,59] cannot find symbol
+[ERROR]   symbol:   method getBusinessDayDate()
+[ERROR]   location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[28,21] cannot find symbol
+[ERROR]   symbol:   method getWorkstationId()
+[ERROR]   location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[28,57] cannot find symbol
+[ERROR]   symbol:   method getWorkstationId()
+[ERROR]   location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[29,21] cannot find symbol
+[ERROR]   symbol:   method getTransactionSequenceNumber()
+[ERROR]   location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[29,69] cannot find symbol
+[ERROR]   symbol:   method getTransactionSequenceNumber()
+[ERROR]   location: variable b of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[53,31] cannot find symbol
+[ERROR]   symbol:   method getFieldName()
+[ERROR]   location: variable x of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[53,59] cannot find symbol
+[ERROR]   symbol:   method getFieldName()
+[ERROR]   location: variable x of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[54,33] cannot find symbol
+[ERROR]   symbol:   method getFieldValue()
+[ERROR]   location: variable x of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[54,62] cannot find symbol
+[ERROR]   symbol:   method getFieldValue()
+[ERROR]   location: variable x of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[58,31] cannot find symbol
+[ERROR]   symbol:   method getSalesAmount()
+[ERROR]   location: variable x of type ru.x5.model.RetailLineItem
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[60,62] invalid method reference
+[ERROR]   cannot find symbol
+[ERROR]     symbol:   method getSalesAmount()
+[ERROR]     location: class ru.x5.model.RetailLineItem
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[63,31] cannot find symbol
+[ERROR]   symbol:   method getTenderAmount()
+[ERROR]   location: variable x of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[65,62] invalid method reference
+[ERROR]   cannot find symbol
+[ERROR]     symbol:   method getTenderAmount()
+[ERROR]     location: class ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[73,45] cannot find symbol
+[ERROR]   symbol:   method getTransactionTypeCode()
+[ERROR]   location: variable x of type ru.x5.model.Transaction
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[107,25] constructor Tender in class ru.x5.model.Tender cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found: java.lang.String,java.lang.String,java.math.BigDecimal,<nulltype>,<nulltype>,<nulltype>,<nulltype>,<nulltype>
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[117,15] cannot find symbol
+[ERROR]   symbol:   method setTransactionSequenceNumber(java.lang.String)
+[ERROR]   location: variable tender of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[118,15] cannot find symbol
+[ERROR]   symbol:   method setWorkstationId(isVprokExp[...]ionId)
+[ERROR]   location: variable tender of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[119,15] cannot find symbol
+[ERROR]   symbol:   method setRetailStoreId(java.lang.String)
+[ERROR]   location: variable tender of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[120,15] cannot find symbol
+[ERROR]   symbol:   method setBusinessDayDate(java.lang.String)
+[ERROR]   location: variable tender of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[121,15] cannot find symbol
+[ERROR]   symbol:   method setTransactionTypeCode(java.lang.String)
+[ERROR]   location: variable tender of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[130,31] cannot find symbol
+[ERROR]   symbol:   method getFieldName()
+[ERROR]   location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[130,59] cannot find symbol
+[ERROR]   symbol:   method getFieldName()
+[ERROR]   location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[131,33] cannot find symbol
+[ERROR]   symbol:   method getFieldValue()
+[ERROR]   location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[131,62] cannot find symbol
+[ERROR]   symbol:   method getFieldValue()
+[ERROR]   location: variable x of type ru.x5.model.TenderExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[134,36] cannot find symbol
+[ERROR]   symbol:   method getTenderTypeCode()
+[ERROR]   location: variable x of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/model/TenderPstProcessor.java:[135,22] cannot find symbol
+[ERROR]   symbol:   method setTenderTypeCode(java.lang.String)
+[ERROR]   location: variable x of type ru.x5.model.Tender
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[12,35] cannot find symbol
+[ERROR]   symbol:   variable LogManager
+[ERROR]   location: class ru.x5.process.TransactionCorrector
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[17,50] cannot find symbol
+[ERROR]   symbol:   method getIdoc()
+[ERROR]   location: variable doc of type ru.x5.model.IDocWrapper
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[19,49] cannot find symbol
+[ERROR]   symbol:   method getTenders()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[20,65] cannot find symbol
+[ERROR]   symbol:   method getRetailLineItems()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[23,52] cannot find symbol
+[ERROR]   symbol:   method getTransactionExtensions()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[30,53] cannot find symbol
+[ERROR]   symbol:   method getFinancialMovemen()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[31,53] cannot find symbol
+[ERROR]   symbol:   method getFinacialMovement()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[32,53] cannot find symbol
+[ERROR]   symbol:   method getLineItemDiscExtensions()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[33,53] cannot find symbol
+[ERROR]   symbol:   method getLineItemDiscounts()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[34,53] cannot find symbol
+[ERROR]   symbol:   method getLineItemExtensions()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[35,53] cannot find symbol
+[ERROR]   symbol:   method getLineItemTaxes()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[36,53] cannot find symbol
+[ERROR]   symbol:   method getRetailLineItems()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[37,53] cannot find symbol
+[ERROR]   symbol:   method getRetailTotals()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[38,53] cannot find symbol
+[ERROR]   symbol:   method getTenders()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[39,53] cannot find symbol
+[ERROR]   symbol:   method getTenderExtensions()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[40,53] cannot find symbol
+[ERROR]   symbol:   method getTenderTotals()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[41,53] cannot find symbol
+[ERROR]   symbol:   method getTransactDiscExts()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[42,53] cannot find symbol
+[ERROR]   symbol:   method getTransactions()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[43,53] cannot find symbol
+[ERROR]   symbol:   method getTransactionDiscounts()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[44,53] cannot find symbol
+[ERROR]   symbol:   method getTransactionExtensions()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[45,53] cannot find symbol
+[ERROR]   symbol:   method getLineItemVoids()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[46,53] cannot find symbol
+[ERROR]   symbol:   method getPostVoidDetails()
+[ERROR]   location: variable postrCreateMultip of type ru.x5.model.PostrCreateMultip
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[53,37] cannot find symbol
+[ERROR]   symbol:   method getFieldName()
+[ERROR]   location: variable transactionExtension of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[53,82] cannot find symbol
+[ERROR]   symbol:   method getFieldValue()
+[ERROR]   location: variable transactionExtension of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[54,41] cannot find symbol
+[ERROR]   symbol:   method getFieldName()
+[ERROR]   location: variable transactionExtension of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[55,41] cannot find symbol
+[ERROR]   symbol:   method getFieldValue()
+[ERROR]   location: variable transactionExtension of type ru.x5.model.TransactionExtension
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[62,31] cannot find symbol
+[ERROR]   symbol:   method setWorkstationId(java.lang.String)
+[ERROR]   location: variable transactionKey of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[85,49] cannot find symbol
+[ERROR]   symbol:   method getRetailTypeCode()
+[ERROR]   location: variable retailLineItem of type ru.x5.model.RetailLineItem
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[85,96] cannot find symbol
+[ERROR]   symbol:   method getSalesAmount()
+[ERROR]   location: variable retailLineItem of type ru.x5.model.RetailLineItem
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[86,34] cannot find symbol
+[ERROR]   symbol:   method getSalesAmount()
+[ERROR]   location: variable retailLineItem of type ru.x5.model.RetailLineItem
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[92,55] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class ru.x5.model.RetailLineItem
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[93,35] cannot find symbol
+[ERROR]   symbol:   method getRetailStoreId()
+[ERROR]   location: variable key of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[94,37] cannot find symbol
+[ERROR]   symbol:   method getBusinessDayDate()
+[ERROR]   location: variable key of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[95,41] cannot find symbol
+[ERROR]   symbol:   method getTransactionTypeCode()
+[ERROR]   location: variable key of type ru.x5.model.BaseTransactionKey
+[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[96,35] cannot find symbol
+[ERROR]   symbol:   method getWorkstationId()
+[ERROR]   location: variable key of type ru.x5.model.BaseTransactionKey
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+C:\Users\Mikha.Shishkanov\flink-jobs\xml-parser-correction>
