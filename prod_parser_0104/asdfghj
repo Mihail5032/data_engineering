@@ -1,1 +1,10 @@
-2026-03-31 22:22:24,613 WARN  ru.x5.parser                                                 [] - DEDUP_PARTIAL_KEY: found 0/4, key=|||, lines_read=1263, kafka_len=2336, first_200=[<?xml version="1.0" encoding="UTF-8"?><WPUWBW01>]
+SELECT rtl_txn_rk,
+       retailstoreid,
+       transactionsequencenumber,
+       count(*) as cnt,
+       count(DISTINCT _commit_snapshot_id) as snapshots
+FROM raw_bptransaction_test
+WHERE businessdaydate = '2026-03-21'
+GROUP BY rtl_txn_rk, retailstoreid, transactionsequencenumber
+HAVING count(*) > 1
+LIMIT 15
