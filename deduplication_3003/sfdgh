@@ -2,3 +2,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 private static final Logger log = LogManager.getLogger("ru.x5.parser");
 как поменять на ламбок
+
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-api</artifactId>
+    <version>2.17.1</version>
+    <scope>provided</scope>
+</dependency>
