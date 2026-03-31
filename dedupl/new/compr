@@ -1,0 +1,738 @@
+   METHOD /posdw/if_ex_compression~call.
+    FIELD-SYMBOLS:
+      <fs_trans_not_relevant> TYPE /posdw/transsource,    " transaction source which is not relevant
+      <l_transaction_in>      TYPE /posdw/transaction_int,
+      <l_retaillineitem_in>   TYPE /posdw/retaillineitem,
+      <item_out>              TYPE /posdw/retaillineitem,
+      <tender_out>            TYPE /posdw/tender,
+      <l_tender_in>           TYPE /posdw/tender,
+      <l_item_compressed>     TYPE type_item_compressed,  " entry of table with compressed data
+      <l_tend_compressed>     TYPE type_tend_compressed,  " entry of table with compressed data
+      <l_item_values>         TYPE type_item_values,
+      <l_tend_values>         TYPE type_tend_values,
+      <l_transsource>         TYPE /posdw/transsource,     " workarea with key to fill the transaction header
+      <discount>              TYPE /posdw/discount,
+      <disc>                  TYPE t_discount,
+      <package>               TYPE /posdw/tt_transaction_int,
+      <ext>                   TYPE /posdw/extensions.
+
+    DATA:
+      l_salesamount      TYPE /posdw/salesamount,
+      l_salesamount_pre  TYPE /posdw/salesamount,
+      l_price            TYPE /posdw/salesamount,
+      lt_items           TYPE TABLE OF type_item_compressed,
+      lt_tran_uniq       TYPE /posdw/tt_transaction_int,
+      lt_tran            TYPE /posdw/tt_transaction_int,
+      lt_transaction     TYPE /posdw/tt_transaction_int,
+      lw_item_compressed TYPE type_item_compressed,
+      lw_tend_compressed TYPE type_tend_compressed,
+      l_transaction_out  TYPE /posdw/transaction_int, " Work area for output transaction
+      lt_sources         TYPE tt_sources,
+      l_reason           TYPE char20,
+      l_step             TYPE /posdw/tenderamount,
+      l_rnumber          TYPE /posdw/retailsequencenumber,
+      l_fnumber          TYPE /posdw/retailsequencenumber,
+      ls_disc            TYPE t_discount,
+      l_tabix            TYPE i,
+      l_date             TYPE char20,
+      l_source           TYPE string,
+      l_src20            TYPE srckey,
+      lt_kalsm           TYPE TABLE OF zlo_wpsrc_kalsm,
+      l_times            TYPE sy-tabix,
+      l_plant            TYPE werks_d,
+      x_unique.
+    DATA bal TYPE /posdw/tenderamount.
+
+    FIELD-SYMBOLS:
+      <wpsrc>                TYPE zlo_wpsrc_kalsm,
+      <salesdata>            TYPE t_tran_list,
+      <source>               TYPE t_source_list,
+      <actgr>                TYPE t_actgr,
+      <fs_financialmovement> TYPE /posdw/financialmovement.
+
+    CHECK it_transaction IS NOT INITIAL.
+    READ TABLE it_transaction INDEX 1 ASSIGNING <l_transaction_in>.
+
+    l_plant = <l_transaction_in>-plant.
+
+    get_fr_models( <l_transaction_in>-retailstoreid ).
+
+    DATA(max_pos_p)  = ir_parameters->get_value( 'Z_POS_MAX' ).
+    IF max_pos_p IS NOT INITIAL.
+      max_pos = max_pos_p.
+    ELSE.
+      max_pos = 250.
+    ENDIF.
+
+    APPEND INITIAL LINE TO ot_package ASSIGNING <package>.
+
+    DATA lr_packs TYPE RANGE OF matnr18.
+    SELECT sign opti AS option low high FROM tvarvc
+      INTO CORRESPONDING FIELDS OF TABLE lr_packs WHERE name = 'VPROK_PACK'.
+
+    SELECT sign, opti AS option, low, high
+      FROM tvarvc INTO TABLE @DATA(lr_rnd) WHERE name = 'RND_CHK'.
+
+    SELECT sign, opti AS option, low, high
+      FROM tvarvc INTO TABLE @mt_agg WHERE name = 'AGG_NEW'.
+
+    SELECT SINGLE low FROM tvarvc INTO @DATA(x_fpsag) WHERE name = 'FPS_AG'.
+
+    SELECT SINGLE low FROM tvarvc INTO @DATA(vat_sdate) WHERE name = 'NDS20_LASTDAY'.
+    IF vat_sdate IS INITIAL.
+      vat_sdate = '20251231'.
+    ENDIF.
+
+    SELECT SINGLE ktokk FROM zav_vendor INTO @DATA(ktokk)
+      WHERE lifnr = @<l_transaction_in>-retailstoreid.
+
+    extract_cert_sales( EXPORTING it_transaction = it_transaction
+                        IMPORTING et_tran = lt_tran et_tran_uniq = lt_tran_uniq ).
+
+    DATA lt_alco_ch TYPE /posdw/tt_transaction_int.
+
+
+    IF  ktokk = 'Z015'. " Магазин ОФ
+      " "INTEG-8632. Для магазинов ОФ разделим чеки на агентский товар и товар X5
+      lt_alco_ch = split_ofr_chk( CHANGING ct_tran = lt_tran ).
+    ENDIF.
+
+    " Разложим чеки по пачкам Source
+    SELECT * FROM zlo_wpsrc_kalsm INTO TABLE lt_kalsm ORDER BY source.
+    DATA l_dlv_sum  TYPE /posdw/salesamount.
+    DATA l_pck_sum  TYPE /posdw/salesamount.
+    DATA l_chr_sum  TYPE /posdw/salesamount.
+    FIELD-SYMBOLS <trans> TYPE  /posdw/tt_transaction_int.
+    ASSIGN lt_tran TO <trans>.
+    CLEAR l_times.
+    DO 2 TIMES.
+      l_times = l_times + 1.
+      LOOP AT <trans> ASSIGNING <l_transaction_in>.
+        CLEAR: l_source, l_src20.
+        READ TABLE <l_transaction_in>-extensions WITH KEY fieldname = 'SOURCE' ASSIGNING <ext>.
+        IF sy-subrc IS INITIAL.
+          l_src20 = <ext>-fieldvalue. " Обрезаем 20 симв.
+          UNASSIGN <wpsrc>.
+          READ TABLE lt_kalsm WITH KEY source = l_src20 BINARY SEARCH ASSIGNING <wpsrc>.
+
+          "IF l_src20 CP 'vprok.*' or l_src20 CP '*franch'
+          IF <wpsrc> IS ASSIGNED AND <wpsrc>-agbsrc = 'X'. " Агрегация принудительно по Source
+            l_source =  'SRC:' && l_src20.
+          ELSE.
+            IF <wpsrc> IS ASSIGNED.
+              l_source =  'KSM:' && <wpsrc>-kalsm.
+            ELSE.
+              l_source =  'SRC:' && l_src20.
+            ENDIF.
+          ENDIF.
+        ENDIF.
+        IF l_source IS INITIAL.
+          " Отдельно выделим агрегатор ОКОЛО
+          READ TABLE <l_transaction_in>-tender ASSIGNING <l_tender_in> WITH KEY tendertypecode = '3112'. " продажа агрегатор около
+          IF sy-subrc IS INITIAL.
+            l_source = 'OLD:AG'.
+          ENDIF.
+        ENDIF.
+
+        DATA x_ret. " Флаг возврата
+        CLEAR x_ret.
+        LOOP AT <l_transaction_in>-retaillineitem TRANSPORTING NO FIELDS WHERE retailtypecode CP '28*' .
+          x_ret = 'R'.
+          EXIT.
+        ENDLOOP.
+
+        DATA inn TYPE lifnr. " ИНН
+        CLEAR inn.
+        IF <l_transaction_in>-transtypecode = '1019'   " продажа МП
+        OR <l_transaction_in>-transtypecode = '1006' . " возврат МП
+          READ TABLE <l_transaction_in>-extensions WITH KEY fieldname = 'INN' ASSIGNING <ext>.
+          IF sy-subrc IS INITIAL.
+            inn = <ext>-fieldvalue.
+          ENDIF.
+        ENDIF.
+
+        IF <l_transaction_in>-transtypecode = '1020'.  " Продажа сертификата
+          " Складываем все продажи сертификатов в отдельную кучку
+          l_source = '1020'.
+          remove_cash_rnd( CHANGING cs_transaction = <l_transaction_in> ).
+        ENDIF.
+        DATA crt_order  TYPE string.
+        DATA crt_date   TYPE string.
+        DATA crt_party  TYPE string.
+        CLEAR: crt_date, crt_order, crt_party.
+        LOOP AT <l_transaction_in>-tender ASSIGNING FIELD-SYMBOL(<tender>) WHERE tendertypecode = '3123' OR tendertypecode = '3110'.
+          crt_date  = VALUE #( <tender>-extensions[ fieldname = 'CERT_DATE' ]-fieldvalue OPTIONAL ).
+          IF <tender>-tendertypecode = '3110'.
+            " последний день периода из CERT_DATE
+            " ожидаем формат CERT_DATE: dd-mm-yyyy
+            REPLACE ALL OCCURRENCES OF '-' IN crt_date WITH '.'.
+            DATA crt_dt TYPE dats.
+            DATA eom_dt TYPE dats.
+            CALL FUNCTION 'CONVERSION_EXIT_PDATE_INPUT'
+              EXPORTING
+                input        = crt_date
+              IMPORTING
+                output       = crt_dt
+              EXCEPTIONS
+                invalid_date = 1
+                OTHERS       = 2.
+            IF sy-subrc IS INITIAL.
+
+              CALL FUNCTION 'SN_LAST_DAY_OF_MONTH'
+                EXPORTING
+                  day_in       = crt_dt
+                IMPORTING
+                  end_of_month = eom_dt.
+
+              crt_date = |{ eom_dt DATE = ENVIRONMENT }|.
+
+            ENDIF.
+            REPLACE ALL OCCURRENCES OF '.' IN crt_date WITH '-'.
+          ENDIF.
+          crt_party = VALUE #( <tender>-extensions[ fieldname = 'CERT_PARTY' ]-fieldvalue OPTIONAL ).
+          IF <tender>-tendertypecode = '3110' AND crt_party+4 = '_null'.
+            crt_party = crt_party(4).
+          ENDIF.
+          IF <tender>-tendertypecode = '3123'.
+            crt_order = VALUE #( <tender>-extensions[ fieldname = 'CERT_ORDER' ]-fieldvalue OPTIONAL ).
+            IF crt_order IS INITIAL.
+              crt_order = VALUE #( <tender>-extensions[ fieldname = 'CERT_ORDNU' ]-fieldvalue OPTIONAL ).
+              IF crt_order IS INITIAL.
+                crt_order = VALUE #( <tender>-extensions[ fieldname = 'CERT_PRICE' ]-fieldvalue OPTIONAL ).
+                IF crt_order CP '*.0*'.
+                  SPLIT crt_order AT '.' INTO crt_order DATA(rem).
+                ENDIF.
+              ENDIF.
+            ENDIF.
+          ENDIF.
+        ENDLOOP.
+
+        IF x_ret = 'R'.
+          crt_date = VALUE #( <l_transaction_in>-extensions[ fieldname = 'SALE_DATE' ]-fieldvalue OPTIONAL ).
+          IF strlen( crt_date ) > 8.
+            crt_date = crt_date(10).
+            REPLACE ALL OCCURRENCES OF '-' in crt_date WITH ''.
+            CONDENSE crt_date NO-GAPS.
+          ENDIF.
+          IF crt_date IS NOT INITIAL.
+            data a995_date type dats.
+            clear a995_date.
+            IF  ktokk = 'Z015' and l_times = 2.
+              " ОФП, возврат алкоголя, смотретим A995
+              a995_date = crt_date.
+              a995_date = get_a995_date( plant = l_plant sale_date = a995_date ).
+              IF  a995_date IS NOT INITIAL.
+                crt_date = a995_date.
+              ENDIF.
+            ENDIF.
+            if a995_date is initial.
+              " проверим смену 10-22
+              data(sale_date) =  get_taxclass_change_date( items = <l_transaction_in>-retaillineitem sale_date = crt_date ).
+              IF sale_date is not initial.
+                crt_date = sale_date.
+              ELSE.
+                " базовая логика для 20%-22%
+                if crt_date > vat_sdate.
+                  CLEAR crt_date.
+                ELSE.
+                  " Продажа в период до смены НДС
+                  crt_date = vat_sdate.
+                ENDIF.
+              ENDIF.
+            ENDIF.
+          ENDIF.
+        ENDIF.
+        " 5000033338 1934434: Доработки SAP АО РР (Торг CAR)
+        LOOP AT <l_transaction_in>-tender ASSIGNING <tender> WHERE tendertypecode = '3102'.
+          IF VALUE #( <tender>-extensions[ fieldname = 'AUTH_TYPE' ]-fieldvalue OPTIONAL ) = 'AOPPCERT'. "" Оплата соц.картой (АОРР)
+            crt_party  = VALUE #( <tender>-extensions[ fieldname = 'AOPP_PC' ]-fieldvalue OPTIONAL ).
+            inn  = crt_order = VALUE #( <tender>-extensions[ fieldname = 'AOPP_INN' ]-fieldvalue OPTIONAL ).
+            <tender>-tendertypecode =  '3124'. " Оплата соц.картой (АОРР)
+            EXIT.
+          ENDIF.
+        ENDLOOP.
+        " 5000032005 1755701: Разработка_CAR: Внедрение чека предоплат
+        IF x_fpsag = 'X' AND ( <l_transaction_in>-transtypecode = '1016' OR <l_transaction_in>-transtypecode = '1017' ).
+          LOOP AT <l_transaction_in>-tender ASSIGNING <tender> WHERE tendertypecode = '3112'.
+            IF VALUE #( <tender>-extensions[ fieldname = 'AUTH_TYPE' ]-fieldvalue OPTIONAL ) = 'FPS'. " СБП
+              " Прождажа или возврат агрегатора c оплатой СБП агрегируем отдельно
+              crt_party = 'FPS_AG'.
+            ENDIF.
+          ENDLOOP.
+        ENDIF.
+
+        IF <l_transaction_in>-plant IN lr_rnd.
+          remove_cash_rnd( CHANGING cs_transaction = <l_transaction_in> ).
+        ENDIF.
+
+        " Разделим на IDOC
+        READ TABLE lt_sources ASSIGNING <source> WITH KEY src = l_source ret = x_ret inn = inn tabix = l_times
+                                                          cert_date  = crt_date
+                                                          cert_party = crt_party
+                                                          cert_ord   = crt_order  BINARY SEARCH.
+        IF sy-subrc IS NOT INITIAL.
+          INSERT INITIAL LINE INTO lt_sources INDEX sy-tabix ASSIGNING <source>.
+          <source>-ret = x_ret.
+          <source>-inn = inn.
+          <source>-src = l_source.
+          <source>-tabix = l_times.
+          <source>-cert_date  = crt_date.
+          <source>-cert_party = crt_party.
+          <source>-cert_ord   = crt_order.
+        ENDIF.
+
+        GET REFERENCE OF <source> INTO m_source.
+        package_choise( <l_transaction_in> ). " Выбираем пакет salesdata
+        ASSIGN <source>-r_sale->* TO <salesdata>.
+
+        CLEAR: l_dlv_sum, l_pck_sum, l_chr_sum.
+        DATA ls_agsales TYPE t_agsum.
+        CLEAR ls_agsales.
+        ls_agsales-src = l_src20.
+
+        LOOP AT <l_transaction_in>-retaillineitem ASSIGNING <l_retaillineitem_in>.
+          CHECK <l_retaillineitem_in>-retailtypecode <> '2901'
+            AND <l_retaillineitem_in>-retailtypecode <> '2902'. " Исключаем отмененные позиции
+          IF <l_retaillineitem_in>-itemid = '000000000040000000'  " Удалим доставку ИМ TCX
+          OR <l_retaillineitem_in>-itemid = '000000000040000070'  " Удалим сборку и упаковку ВПРОК
+          OR <l_retaillineitem_in>-itemid = 'S001306'.            " Eдаляем Экспресс-доставка ТС5
+            l_dlv_sum = l_dlv_sum + <l_retaillineitem_in>-salesamount. " Доставка в чеке
+            CONTINUE.                                                " Выкидываем из результата
+          ENDIF.
+
+          IF lr_packs IS NOT INITIAL                                   " INTEG-7920. ВПРОК. Пакеты
+          AND <l_retaillineitem_in>-itemid IN lr_packs.
+            l_pck_sum = l_pck_sum + <l_retaillineitem_in>-salesamount. " Платная упаковк в чеке ВПРОК
+            CONTINUE.                                                  " Выкидываем из результата
+          ENDIF.
+
+          " Собираем продажи агрегатора в разрезе Source
+          CASE <l_retaillineitem_in>-retailtypecode.
+            WHEN '2028' OR '2035' OR '2044' OR '2831'
+              OR '2823' OR '2826'.
+              IF <l_retaillineitem_in>-itemid <> 'S003147'. " Благотворительность
+                ls_agsales-sum = ls_agsales-sum + <l_retaillineitem_in>-salesamount. " Продажа агрегатора
+              ELSE.
+                l_chr_sum = l_chr_sum + <l_retaillineitem_in>-salesamount.
+                CONTINUE.
+              ENDIF.
+          ENDCASE.
+
+          l_reason = <l_retaillineitem_in>-retailreasoncode.
+          IF <l_retaillineitem_in>-retailtypecode = '2023'. " ЦМД
+            READ TABLE <l_retaillineitem_in>-extensions ASSIGNING <ext> WITH KEY fieldname = 'MD_IDSAP'.
+            IF sy-subrc IS INITIAL.
+              l_reason = <ext>-fieldvalue.
+            ENDIF.
+          ENDIF.
+          READ TABLE <salesdata>-items ASSIGNING <l_item_compressed>
+            WITH TABLE KEY
+              retailtypecode = <l_retaillineitem_in>-retailtypecode
+              retailreasoncode = l_reason
+              itemidqualifier = <l_retaillineitem_in>-itemidqualifier
+              itemid = <l_retaillineitem_in>-itemid
+              salesuom = <l_retaillineitem_in>-salesuom
+              transcurrency = <l_transaction_in>-transcurrency.
+          IF sy-subrc <> 0.
+*       A new record has to be created:
+*       sum data and create a new compression record:
+            lw_item_compressed-retailtypecode = <l_retaillineitem_in>-retailtypecode.
+            lw_item_compressed-retailreasoncode = l_reason.
+            lw_item_compressed-itemidqualifier = <l_retaillineitem_in>-itemidqualifier.
+            lw_item_compressed-itemid = <l_retaillineitem_in>-itemid.
+            lw_item_compressed-materialnumber = <l_retaillineitem_in>-materialnumber.
+            lw_item_compressed-salesuom       = <l_retaillineitem_in>-salesuom.
+            lw_item_compressed-transcurrency  = <l_transaction_in>-transcurrency.
+            lw_item_compressed-merchandisecat = <l_retaillineitem_in>-merchandisecat.
+            lw_item_compressed-baseuom        = <l_retaillineitem_in>-baseuom.
+            INSERT lw_item_compressed INTO TABLE <salesdata>-items ASSIGNING <l_item_compressed>.
+          ENDIF.
+
+          ASSIGN <l_item_compressed>-values TO <l_item_values>.
+          ADD <l_retaillineitem_in>-retailquantity TO <l_item_values>-retailquantity.
+          ADD <l_retaillineitem_in>-salesamount    TO <l_item_values>-salesamount.
+          "ADD <l_retaillineitem_in>-salesamount TO l_salesamount.
+          ADD <l_retaillineitem_in>-salesamount TO <l_item_compressed>-salesamount.
+          ADD <l_retaillineitem_in>-normalsalesamt TO <l_item_values>-normalsalesamt.
+          ADD <l_retaillineitem_in>-cost           TO <l_item_values>-cost.
+          ADD <l_retaillineitem_in>-basequantity   TO <l_item_values>-basequantity.
+          IF <l_retaillineitem_in>-retailtypecode = '2011'. " Маркдаун
+            LOOP AT <l_retaillineitem_in>-discount ASSIGNING <discount>
+              WHERE reductionamount IS NOT INITIAL AND disctypecode = '3107'. " соберем маркдаун
+              CLEAR ls_disc.
+              ls_disc-disctypecode = <discount>-disctypecode.
+              ls_disc-reductionamount = <discount>-reductionamount.
+              "ls_disc-DISCCOUNT = 1.
+              COLLECT ls_disc INTO <l_item_compressed>-disc.
+            ENDLOOP.
+          ENDIF.
+        ENDLOOP.
+
+        COLLECT ls_agsales INTO <salesdata>-agsales.
+
+        SORT <l_transaction_in>-tender BY tendertypecode DESCENDING. " Необходимо списывть услуги сперва с безнала
+        LOOP AT <l_transaction_in>-tender ASSIGNING <l_tender_in>.
+          IF l_dlv_sum <> 0. " Доставка
+            DATA ls_dlv TYPE t_dlvry.
+            CLEAR ls_dlv.
+            ls_dlv-tdcode = <l_tender_in>-tendertypecode.
+            IF abs( l_dlv_sum ) >= abs( <l_tender_in>-tenderamount ).
+              ls_dlv-sum = <l_tender_in>-tenderamount.
+              COLLECT ls_dlv INTO <salesdata>-dlv_sum.
+              l_dlv_sum = l_dlv_sum - <l_tender_in>-tenderamount.
+              DELETE <l_transaction_in>-tender.
+              CONTINUE.
+            ELSE.
+              ls_dlv-sum = l_dlv_sum.
+              COLLECT ls_dlv INTO <salesdata>-dlv_sum.
+              <l_tender_in>-tenderamount = <l_tender_in>-tenderamount - l_dlv_sum.
+              CLEAR l_dlv_sum.
+            ENDIF.
+          ENDIF.
+
+          IF l_pck_sum <> 0. " Упаковка
+            DATA ls_pck TYPE t_dlvry.
+            CLEAR ls_pck.
+            ls_pck-tdcode = <l_tender_in>-tendertypecode.
+            IF abs( l_pck_sum ) >= abs( <l_tender_in>-tenderamount ).
+              ls_pck-sum = <l_tender_in>-tenderamount.
+              COLLECT ls_pck INTO <salesdata>-pck_sum.
+              l_pck_sum = l_pck_sum - <l_tender_in>-tenderamount.
+              DELETE <l_transaction_in>-tender.
+              CONTINUE.
+            ELSE.
+              ls_pck-sum = l_pck_sum.
+              COLLECT ls_pck INTO <salesdata>-pck_sum.
+              <l_tender_in>-tenderamount = <l_tender_in>-tenderamount - l_pck_sum.
+              CLEAR l_pck_sum.
+            ENDIF.
+          ENDIF.
+
+          IF l_chr_sum <> 0. " Благотворительность
+            <l_tender_in>-tenderamount = <l_tender_in>-tenderamount - l_chr_sum.
+          ENDIF.
+
+          "Много Лосося: Сводим все к двум типам оплат
+          IF <l_transaction_in>-transtypecode = '1026'.
+            IF <l_tender_in>-tendertypecode = '3101'.
+              <l_tender_in>-tendertypecode = '3114'. " МЛ/ Наличные
+            ELSE.
+              <l_tender_in>-tendertypecode = '3119'. " МЛ. безнал
+            ENDIF.
+          ENDIF.
+
+          " Подменим код безнала на код активного гражданина
+          READ TABLE <l_tender_in>-extensions WITH KEY fieldname = 'AUTH_TYPE'
+                                                      fieldvalue = 'ACTCIT' TRANSPORTING NO FIELDS.
+          IF sy-subrc IS INITIAL.
+            <l_tender_in>-tendertypecode = '3122'.
+          ENDIF.
+
+          READ TABLE <salesdata>-tenders WITH TABLE KEY
+              businessdaydate = <l_transaction_in>-businessdaydate
+              tendertypecode  = <l_tender_in>-tendertypecode
+              tendercurrency  = <l_tender_in>-tendercurrency
+              ASSIGNING <l_tend_compressed>.
+          IF sy-subrc <> 0.
+*       A new record has to be created:
+*       sum data and create a new compression record:
+            lw_tend_compressed-businessdaydate = <l_transaction_in>-businessdaydate.
+            lw_tend_compressed-tendertypecode  = <l_tender_in>-tendertypecode.
+            lw_tend_compressed-tendercurrency  = <l_tender_in>-tendercurrency.
+            INSERT lw_tend_compressed INTO TABLE <salesdata>-tenders ASSIGNING <l_tend_compressed>.
+          ENDIF.
+          ADD <l_tender_in>-tenderamount  TO <l_tend_compressed>-values-tenderamount.
+          "INTEG-7710. Агрегация оплат сертификатов Активный гражданин
+          READ TABLE <l_tender_in>-extensions WITH KEY fieldname = 'AUTH_TYPE' fieldvalue = 'ACTCIT' TRANSPORTING NO FIELDS.
+          IF sy-subrc IS INITIAL.
+            DATA ls_actgr TYPE t_actgr.
+            CLEAR ls_actgr.
+            read_ext <l_tender_in> 'CERT_AMNT' ls_actgr-dif.
+            ls_actgr-sum = <l_tender_in>-tenderamount.
+            read_ext <l_tender_in> 'CERT_AGRDT' ls_actgr-agrdate.
+            read_ext <l_tender_in> 'CERT_AGRNM' ls_actgr-agrnum.
+            read_ext <l_tender_in> 'CERT_PARTY' ls_actgr-party.
+            read_ext <l_tender_in> 'CERT_PRINC' ls_actgr-princ.
+            IF ls_actgr-dif > <l_tender_in>-tenderamount AND <l_tender_in>-tenderamount > 0.
+              ls_actgr-dif = ls_actgr-dif - <l_tender_in>-tenderamount.
+            ELSEIF ls_actgr-dif > <l_tender_in>-tenderamount AND <l_tender_in>-tenderamount < 0.
+              ls_actgr-dif = ls_actgr-dif + <l_tender_in>-tenderamount.
+            ELSE.
+              CLEAR ls_actgr-dif.
+            ENDIF.
+            READ TABLE <salesdata>-actgr_sum WITH TABLE KEY
+              agrdate = ls_actgr-agrdate
+              agrnum  = ls_actgr-agrnum
+              party   = ls_actgr-party
+              princ   = ls_actgr-princ
+              ASSIGNING <actgr>.
+            IF sy-subrc IS NOT INITIAL.
+              INSERT ls_actgr INTO TABLE <salesdata>-actgr_sum.
+            ELSE.
+              <actgr>-sum = <actgr>-sum + ls_actgr-sum.
+              <actgr>-dif = <actgr>-dif + ls_actgr-dif.
+            ENDIF.
+          ENDIF.
+
+          CASE <l_tender_in>-tendertypecode.
+            WHEN '3103'. " Опт
+              <salesdata>-cert_nom_opt = <salesdata>-cert_nom_opt + <l_tender_in>-accountnumber.
+            WHEN '3105'. " Розница
+              <salesdata>-cert_nom_roz = <salesdata>-cert_nom_roz + <l_tender_in>-accountnumber.
+            WHEN '3123'. " Новый опт
+              READ TABLE <l_tender_in>-extensions WITH KEY fieldname = 'CERT_ADVIC' ASSIGNING <ext>.
+              IF sy-subrc IS INITIAL.
+                "<l_tend_compressed>-values-cert_advic = <l_tend_compressed>-values-cert_advic + <ext>-fieldvalue.
+                "	Вычисляtv разницу между остатком аванса CERT_ADVIC и суммой гашения
+                bal = <ext>-fieldvalue - <l_tender_in>-tenderamount.
+                " Если разница < 0, то передаем в ERP
+                IF bal < 0.
+                  <l_tend_compressed>-values-cert_balance = <l_tend_compressed>-values-cert_balance - bal.
+                ENDIF.
+              ENDIF.
+          ENDCASE.
+        ENDLOOP.
+
+        LOOP AT <l_transaction_in>-discount ASSIGNING <discount>.
+          ls_disc-disctypecode = <discount>-disctypecode.
+          ls_disc-reductionamount = <discount>-reductionamount.
+          ls_disc-disccount = 1.
+          COLLECT ls_disc INTO <salesdata>-discounts.
+        ENDLOOP.
+
+*   Add input transaction to source transaction list
+        APPEND INITIAL LINE TO <salesdata>-source ASSIGNING <l_transsource>.
+        <l_transsource>-businessdaydate = <l_transaction_in>-businessdaydate.
+        <l_transsource>-transindex = <l_transaction_in>-transindex.
+      ENDLOOP.
+
+      CLEAR <trans>.
+      ASSIGN lt_alco_ch TO <trans>.
+    ENDDO.
+*----------------------------------------------------------------------
+* Fill output transaction work area
+*----------------------------------------------------------------------
+    LOOP AT lt_sources ASSIGNING <source>.
+      LOOP AT <source>-sales ASSIGNING <salesdata>.
+        CHECK <salesdata>-items IS NOT INITIAL.
+        CLEAR l_transaction_out.
+        READ TABLE it_transaction INDEX 1 ASSIGNING <l_transaction_in>.
+        l_transaction_out-transaction_fi = <l_transaction_in>-transaction_fi.
+        l_transaction_out-retailstoreid = <l_transaction_in>-retailstoreid.
+        l_transaction_out-businessdaydate = <l_transaction_in>-businessdaydate.
+        alpha '1' l_transaction_out-workstationid.
+        l_transaction_out-transnumber = l_transaction_out-businessdaydate && <source>-ret && <source>-inn.
+
+        IF <source>-src = '1020'. "Продажа сертификата
+          l_transaction_out-transtypecode = '1506'. " Списание материала
+          l_transaction_out-businesstype = '4'.
+          alpha l_transaction_out-transnumber l_transaction_out-transnumber.
+        ELSE.
+          l_transaction_out-transtypecode = '1001'. " Продажи
+          l_transaction_out-businesstype = '1'.
+        ENDIF.
+        l_transaction_out-transcurrency = <l_transaction_in>-transcurrency.
+        l_transaction_out-transsource = <salesdata>-source.
+        l_transaction_out-partnerqualifier = '1'.
+        l_transaction_out-partnerid = <l_transaction_in>-retailstoreid.
+        l_transaction_out-operatorid = <source>-src. " Передаем Source в e1wpb01-cshname
+        " Передаем доставку
+        FIELD-SYMBOLS <dlv> TYPE t_dlvry.
+        LOOP AT <salesdata>-dlv_sum ASSIGNING <dlv>.
+          add_ext l_transaction_out <dlv>-tdcode 'DLVRY_SUM' <dlv>-sum.
+        ENDLOOP.
+        " Передаем упаковку
+        FIELD-SYMBOLS <pck> TYPE t_dlvry.
+        LOOP AT <salesdata>-pck_sum ASSIGNING <pck>.
+          add_ext l_transaction_out <pck>-tdcode 'PCKING_SUM' <pck>-sum.
+        ENDLOOP.
+
+        add_ext l_transaction_out '' 'INN' <source>-inn.
+
+        IF <source>-cert_party = 'FPS_AG'.
+          " для продаж агрегатора, оплаченных СБП, не формируем WPUFIB
+          add_ext l_transaction_out '' 'FPS_AG' 'X'.
+        ELSE.
+          DATA l_str TYPE string.
+          LOOP AT <salesdata>-agsales INTO ls_agsales WHERE sum <> 0.
+            l_str = ls_agsales-src && ':' && ls_agsales-sum.
+            add_ext l_transaction_out 'AG' 'SALES' l_str.
+          ENDLOOP.
+        ENDIF.
+        " передадим суммы продаж и возвратов агрегатора для создания WPUFIB
+        "INTEG-7710. передадим суммы излишков сертификатов активного гражданина
+        DATA l_cnum TYPE numc3.
+        CLEAR l_cnum.
+        LOOP AT <salesdata>-actgr_sum ASSIGNING <actgr>.
+          l_cnum = l_cnum + 1.
+          l_str = 'CA' && l_cnum.
+          add_ext l_transaction_out l_str 'CERT_AGRDT' <actgr>-agrdate.
+          add_ext l_transaction_out l_str 'CERT_AGRNM' <actgr>-agrnum.
+          add_ext l_transaction_out l_str 'CERT_PARTY' <actgr>-party.
+          add_ext l_transaction_out l_str 'CERT_PRINC' <actgr>-princ.
+          add_ext l_transaction_out l_str 'CERT_AMNT' <actgr>-sum.
+          add_ext l_transaction_out l_str 'CERT_DIFF' <actgr>-dif.
+        ENDLOOP.
+
+        LOOP AT <salesdata>-discounts ASSIGNING <disc>.
+          APPEND INITIAL LINE TO l_transaction_out-discount ASSIGNING <discount>.
+          <discount>-disctypecode = <disc>-disctypecode.
+          <discount>-reductionamount = <disc>-reductionamount.
+        ENDLOOP.
+
+        " Размазываем сумму округлений за день по всем товарам (старый алгоритм, перенесен на уровень чека)
+        UNASSIGN <l_item_compressed>.
+        LOOP AT <salesdata>-items ASSIGNING <l_item_compressed>
+            WHERE retailtypecode = '2006' or retailtypecode = '2805'.
+          l_tabix = sy-tabix.
+          exit.
+        ENDLOOP.
+        IF <l_item_compressed> IS ASSIGNED.
+          l_salesamount = <l_item_compressed>-values-salesamount. " Отрицательная сумма
+          DELETE <salesdata>-items INDEX l_tabix.
+          lt_items = <salesdata>-items.
+          CLEAR <salesdata>-items.
+          "sort lt_items by SALESAMOUNT DESCENDING.
+          l_step = l_salesamount / abs( l_salesamount * 100 ) . " Копеечка с минусом
+          l_salesamount_pre = 0.
+          WHILE l_salesamount <> 0 AND l_salesamount_pre <> l_salesamount.
+            l_salesamount_pre = l_salesamount.
+            LOOP AT lt_items ASSIGNING <l_item_compressed>.
+              CHECK abs( <l_item_compressed>-salesamount ) > l_step        " без нулевых
+                AND NOT <l_item_compressed>-itemid CP 'S*'                 " без услуг
+                AND NOT <l_item_compressed>-itemid = '000000000040000000'  " без доставки ИМ TCX
+                AND NOT <l_item_compressed>-itemid = '000000000040000070'. " без услуги сборки и упаковки ВПРОК
+              CHECK <l_item_compressed>-retailtypecode <> '2028'
+                AND <l_item_compressed>-retailtypecode <> '2035'. " Пропускаем позиции агрегатора
+              <l_item_compressed>-salesamount = <l_item_compressed>-salesamount + l_step.
+              l_salesamount = l_salesamount - l_step.
+              IF  l_salesamount = 0.
+                EXIT.
+              ENDIF.
+            ENDLOOP.
+          ENDWHILE.
+          <salesdata>-items = lt_items.
+          CLEAR lt_items.
+        ENDIF.
+
+        l_rnumber = 0.
+        l_fnumber = 0.
+        IF l_transaction_out-transtypecode = '1506'. " Продажа сертификата
+          LOOP AT <salesdata>-items INTO lw_item_compressed.
+            l_rnumber = l_rnumber + 1.
+            APPEND INITIAL LINE TO l_transaction_out-goodsmovement ASSIGNING FIELD-SYMBOL(<gm_out>).
+            <gm_out>-gmnumber = l_rnumber.
+            <gm_out>-gmtypecode = '7147'. "Продажа сертификата
+            <gm_out>-locationid = '1000'.
+            MOVE-CORRESPONDING lw_item_compressed TO <gm_out>.
+            <gm_out>-unitcount = lw_item_compressed-values-retailquantity.
+            IF l_rnumber = 1.
+              add_ext <gm_out> 'TIMES' 'DATE' l_transaction_out-businessdaydate.
+              add_ext <gm_out> 'TIMES' 'TIME' sy-uzeit.
+              DATA(fvalue) = l_plant && l_transaction_out-businessdaydate.
+              add_ext <gm_out> 'POS' 'DOCNUMBER' fvalue.
+            ENDIF.
+          ENDLOOP.
+          LOOP AT <salesdata>-tenders ASSIGNING FIELD-SYMBOL(<sales_tender>).
+            l_fnumber = l_fnumber + 1.
+            IF <sales_tender>-tendertypecode = '3101'.
+              APPEND INITIAL LINE TO l_transaction_out-financialmovement ASSIGNING <fs_financialmovement>.
+              <fs_financialmovement>-finumber = l_fnumber.
+              <fs_financialmovement>-fitypecode = '3160'.
+              <fs_financialmovement>-amount = <sales_tender>-values-tenderamount.
+              <fs_financialmovement>-ficurrency = 'RUB'.
+            ELSE.
+              APPEND INITIAL LINE TO l_transaction_out-financialmovement ASSIGNING <fs_financialmovement>.
+              <fs_financialmovement>-finumber = l_fnumber.
+              <fs_financialmovement>-fitypecode = '3161'.
+              <fs_financialmovement>-amount = <sales_tender>-values-tenderamount.
+              <fs_financialmovement>-ficurrency = 'RUB'.
+            ENDIF.
+          ENDLOOP.
+        ELSE.
+          LOOP AT <salesdata>-items INTO lw_item_compressed.
+            l_rnumber = l_rnumber + 1.
+            APPEND INITIAL LINE TO l_transaction_out-retaillineitem ASSIGNING <item_out>.
+            <item_out>-retailnumber = l_rnumber.
+            MOVE-CORRESPONDING lw_item_compressed TO <item_out>.
+*          <item_out>-ITEMIDQUALIFIER = '2'.
+*          <item_out>-ITEMID = lw_item_compressed-materialnumber.
+            MOVE-CORRESPONDING lw_item_compressed-values TO <item_out>.
+            <item_out>-salesamount = lw_item_compressed-salesamount.
+            IF <item_out>-retailtypecode = '2011'. " маркдаун
+              READ TABLE lw_item_compressed-disc ASSIGNING <disc> WITH KEY disctypecode = '3107'.
+              IF sy-subrc IS INITIAL.
+*    *          APPEND INITIAL LINE TO <item_out>-DISCOUNT ASSIGNING <discount>.
+*    *          <discount>-DISCTYPECODE = <disc>-DISCTYPECODE.
+                <item_out>-normalsalesamt = <item_out>-salesamount + <disc>-reductionamount. " Стоимость без скидки
+*              l_salesamount = l_salesamount / <item_out>-RETAILQUANTITY. " цена на кассе
+*    *          APPEND INITIAL LINE TO <item_out>-EXTENSIONS ASSIGNING <ext>.
+*    *          <ext>-FIELDNAME = 'CASH'.
+*    *          <ext>-FIELDVALUE = l_salesamount.
+*    *          CONDENSE <ext>-FIELDVALUE NO-GAPS.
+*    *          <discount>-REDUCTIONAMOUNT = <item_out>-SALESAMOUNT / <item_out>-RETAILQUANTITY. " фактическая цена
+*    *          <discount>-DISCID = <item_out>-RETAILQUANTITY. " Количечтво
+*    *          CONDENSE <discount>-DISCID NO-GAPS.
+              ENDIF.
+            ELSEIF <item_out>-retailtypecode = '2023' AND lw_item_compressed-retailreasoncode IS NOT INITIAL. " ЦМД
+              add_ext <item_out> '' 'MD_IDSAP' lw_item_compressed-retailreasoncode.
+              IF <item_out>-normalsalesamt IS NOT INITIAL.
+                l_price = <item_out>-normalsalesamt / <item_out>-retailquantity.
+                IF l_price <> 0.
+                  add_ext <item_out> '' 'CASH' l_price.  " Рег. цена
+                  CONDENSE <ext>-fieldvalue NO-GAPS.
+                ENDIF.
+              ENDIF.
+            ENDIF.
+            IF <source>-ret = 'R' and <source>-cert_date is NOT INITIAL and sy-tabix = 1.
+              if <source>-tabix = 2. " для алкоголя ОФП не передеем SALE_DATE в WPIFIB
+                add_ext <item_out> 'ОFP' 'SALE_DATE' <source>-cert_date. " SALE_DATE в возврате
+              ELSE.
+                add_ext <item_out> '' 'SALE_DATE' <source>-cert_date. " SALE_DATE в возврате
+              ENDIF.
+            ENDIF.
+          ENDLOOP.
+          IF <l_transaction_in>-plant IN mt_agg.
+            READ TABLE l_transaction_out-retaillineitem ASSIGNING <item_out> INDEX 1.
+            IF sy-subrc IS INITIAL.
+              DATA guid32 TYPE guid_32.
+              CALL FUNCTION 'GUID_CREATE'
+                IMPORTING
+                  ev_guid_32 = guid32.
+              add_ext <item_out> '' 'PACK_GUID' guid32.
+            ENDIF.
+          ENDIF.
+
+          CLEAR l_salesamount.
+          LOOP AT <salesdata>-tenders INTO lw_tend_compressed.
+            APPEND INITIAL LINE TO l_transaction_out-tender ASSIGNING <tender_out>.
+            MOVE-CORRESPONDING lw_tend_compressed TO <tender_out>.
+            MOVE-CORRESPONDING lw_tend_compressed-values TO <tender_out>.
+            IF <tender_out>-tendertypecode = '3123' OR <tender_out>-tendertypecode = '3110'. " Новый оптовый и розн сертификат
+              <tender_out>-referenceid = <source>-cert_party.  " БЕ_КА (e1wpb06-ZUONR)
+              <tender_out>-accountnumber = <source>-cert_ord.  " номер заказа передаем в e1wpb06-CONDID
+              add_ext <tender_out> 'CERT' 'CERT_DATE' <source>-cert_date. " дата сертификата (e1wpb06-REFERENZ2)
+              <tender_out>-tenderid = lw_tend_compressed-values-cert_balance. " сумма отрицательных разнциц остатка аванса и суммы гашения в чеке
+              CONDENSE <tender_out>-tenderid NO-GAPS. " e1wpb06-CONDID20
+*    *          IF <tender_out>-tendertypecode = '3123' and lw_tend_compressed-values-cert_advic <> 0.
+*    *            add_ext <tender_out> 'CERT' 'CERT_PRICE' lw_tend_compressed-values-cert_advic. " сумма остатков аванса
+*    *            CONDENSE <ext>-fieldvalue NO-GAPS. " передаем в e1wpb06-REFERENZ1
+*    *          ENDIF.
+            ELSEIF <tender_out>-tendertypecode = '3124'.  " AOPP
+              <tender_out>-accountnumber = <source>-cert_ord.  " ИНН (e1wpb06-CONDID)
+              <tender_out>-referenceid = <source>-cert_party.  " Код социальной программы (e1wpb06-ZUONR)
+            ENDIF.
+            IF <tender_out>-tendertypecode = '3103'.
+              add_ext <tender_out> 'CERT' 'CER_OPTNOM' <salesdata>-cert_nom_opt.
+            ELSEIF <tender_out>-tendertypecode = '3105'.
+              add_ext <tender_out> 'CERT' 'CER_ROZNOM' <salesdata>-cert_nom_roz.
+            ENDIF.
+          ENDLOOP.
+        ENDIF.
+        APPEND l_transaction_out TO <package>.
+      ENDLOOP.
+    ENDLOOP.
+
+    APPEND LINES OF lt_tran_uniq TO <package>. " Докинем в пакет неагрегированные чеки с сертфикатами
+
+  ENDMETHOD.
