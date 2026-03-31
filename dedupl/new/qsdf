@@ -1,29 +1,6 @@
-WITH CNT AS (
-    SELECT 
-        retailstoreid,
-        businessdaydate,
-        transactiontypecode,
-        workstationid,
-        transactionsequencenumber,
-        tendersequencenumber,
-        tendertypecode,
-        COUNT(*) as qnty
-    FROM ice_baby.core_flow_ing_raw.raw_bptender
-    WHERE DATE(businessdaydate) BETWEEN DATE '2026-03-17' AND DATE '2026-03-28'
-    GROUP BY 
-        retailstoreid,
-        businessdaydate,
-        transactiontypecode,
-        workstationid,
-        transactionsequencenumber,
-        tendersequencenumber,
-        tendertypecode
-    HAVING COUNT(*) > 1
-)
-SELECT 
-    tendertypecode,
-    COUNT(*) as duplicate_count,
-    SUM(qnty) as total_rows
-FROM CNT
-GROUP BY tendertypecode
-ORDER BY duplicate_count DESC;
+businessDayDate='20260324', transactionTypeCode='1302', workstationId='0', transactionSequenceNumber='100000000002649227'}
+2026-03-31 17:25:36,158 INFO  ru.x5.parser                                                 [] - Update workstationid 1002 for BaseTransactionKey{retailStoreId='S463', businessDayDate='20260324', transactionTypeCode='1302', workstationId='0', transactionSequenceNumber='100000000002649228'}
+2026-03-31 17:25:36,158 WARN  ru.x5.parser                                                 [] - DEDUP_PARTIAL_KEY: found only 0/4 fields, key=|||
+2026-03-31 17:25:36,158 INFO  ru.x5.parser                                                 [] - Update workstationid 1002 for BaseTransactionKey{retailStoreId='S463', businessDayDate='20260324', transactionTypeCode='1305', workstationId='0', transactionSequenceNumber='100000000002649229'}
+2026-03-31 17:25:36,159 INFO  ru.x5.parser                                                 [] - Update workstationid 1002 for BaseTransactionKey{retailStoreId='S463', businessDayDate='20260324', transactionTypeCode='1301', workstationId='0', transactionSequenceNumber='100000000002649230'}
+2026-03-31 17:25:36,159 INFO  ru.x5.parser                                                 [] - Update workstationid 1002 for BaseTrans
