@@ -4,3 +4,11 @@ businessDayDate='20260324', transactionTypeCode='1302', workstationId='0', trans
 2026-03-31 17:25:36,158 INFO  ru.x5.parser                                                 [] - Update workstationid 1002 for BaseTransactionKey{retailStoreId='S463', businessDayDate='20260324', transactionTypeCode='1305', workstationId='0', transactionSequenceNumber='100000000002649229'}
 2026-03-31 17:25:36,159 INFO  ru.x5.parser                                                 [] - Update workstationid 1002 for BaseTransactionKey{retailStoreId='S463', businessDayDate='20260324', transactionTypeCode='1301', workstationId='0', transactionSequenceNumber='100000000002649230'}
 2026-03-31 17:25:36,159 INFO  ru.x5.parser                                                 [] - Update workstationid 1002 for BaseTrans
+
+SELECT substr(result, 1, 2000)
+FROM ice_baby.core_flow_ing_raw.raw_table_audit
+WHERE datetime >= TIMESTAMP '2026-03-24 00:00:00'
+  AND datetime < TIMESTAMP '2026-03-25 00:00:00'
+  AND result LIKE '%S463%'
+  AND result LIKE '%100000000002649232%'
+LIMIT 1
