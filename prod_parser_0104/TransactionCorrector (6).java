@@ -302,8 +302,6 @@ public class TransactionCorrector implements Serializable {
                 }else{
                     key.setIs_aligned_tran(false);
                 }
-            }else {
-                log.info("This key: " + key + " is null in sum. TenderSum: " + tenderSum + ". RetailLineItemSum: " + salesSum);
             }
         }
     }
