@@ -1,1 +1,2 @@
 
+2026-03-31 22:18:24,557 WARN  ru.x5.parser                                                 [] - DEDUP_PARTIAL_KEY: found 0/4, key=|||, lines_read=39535, kafka_len=36836, first_200=[<?xml version="1.0" encoding="UTF-8"?><WPUWBW01>]
