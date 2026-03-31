@@ -1,0 +1,94 @@
+package ru.x5.process;
+
+import org.apache.flink.api.java.functions.KeySelector;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ru.x5.decoder.CustomDecoder;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * Извлекает ключ дедупликации (retailStoreId|businessDayDate|workstationId|transactionSequenceNumber)
+ * из сырого Kafka-сообщения.
+ *
+ * Использует regex вместо JAXB — в ~10 раз быстрее полного парсинга.
+ * Достаточно найти первые вхождения 4 тегов в XML.
+ */
+public class DeduplicationKeyExtractor implements KeySelector<String, String> {
+
+    private static final Logger log = LogManager.getLogger("ru.x5.parser");
+
+    private static final Pattern RETAIL_STORE_ID = Pattern.compile("<RETAILSTOREID>([^<]*)</RETAILSTOREID>");
+    private static final Pattern BUSINESS_DAY_DATE = Pattern.compile("<BUSINESSDAYDATE>([^<]*)</BUSINESSDAYDATE>");
+    private static final Pattern WORKSTATION_ID = Pattern.compile("<WORKSTATIONID>([^<]*)</WORKSTATIONID>");
+    private static final Pattern TXN_SEQ_NUM = Pattern.compile("<TRANSACTIONSEQUENCENUMBER>([^<]*)</TRANSACTIONSEQUENCENUMBER>");
+
+    @Override
+    public String getKey(String kafkaValue) throws Exception {
+        try (InputStream inputStream = CustomDecoder.decodeAndDecompress(kafkaValue)) {
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+
+            String retailStoreId = "";
+            String businessDayDate = "";
+            String workstationId = "";
+            String txnSeqNum = "";
+            int found = 0;
+            int lineCount = 0;
+            String firstLine = null;
+
+            String line;
+            while ((line = reader.readLine()) != null && found < 4) {
+                lineCount++;
+                if (lineCount == 1) { firstLine = line; }
+                if (retailStoreId.isEmpty()) {
+                    String val = extractFirst(RETAIL_STORE_ID, line);
+                    if (!val.isEmpty()) { retailStoreId = val; found++; }
+                }
+                if (businessDayDate.isEmpty()) {
+                    String val = extractFirst(BUSINESS_DAY_DATE, line);
+                    if (!val.isEmpty()) { businessDayDate = val; found++; }
+                }
+                if (workstationId.isEmpty()) {
+                    String val = extractFirst(WORKSTATION_ID, line);
+                    if (!val.isEmpty()) { workstationId = val; found++; }
+                }
+                if (txnSeqNum.isEmpty()) {
+                    String val = extractFirst(TXN_SEQ_NUM, line);
+                    if (!val.isEmpty()) { txnSeqNum = val; found++; }
+                }
+            }
+
+            String key = retailStoreId + "|" + businessDayDate + "|" + workstationId + "|" + txnSeqNum;
+
+            // Логируем только проблемные ключи (не все 100 млн)
+            if (found < 4) {
+                // Показываем первые 200 символов декодированного контента + сколько строк прочитано
+                String preview = (firstLine != null)
+                        ? firstLine.substring(0, Math.min(firstLine.length(), 200))
+                        : "NULL";
+                log.warn("DEDUP_PARTIAL_KEY: found {}/4, key={}, lines_read={}, kafka_len={}, first_200=[{}]",
+                        found, key, lineCount, kafkaValue.length(), preview);
+            }
+
+            return key;
+
+        } catch (Exception e) {
+            log.error("DEDUP_KEY_FAILED: hashCode={}, kafka_len={}, first_50=[{}]",
+                    kafkaValue.hashCode(), kafkaValue.length(),
+                    kafkaValue.substring(0, Math.min(kafkaValue.length(), 50)), e);
+        }
+
+        return "UNKNOWN_" + kafkaValue.hashCode();
+    }
+
+    private String extractFirst(Pattern pattern, String line) {
+        Matcher matcher = pattern.matcher(line);
+        return matcher.find() ? matcher.group(1) : "";
+    }
+}
