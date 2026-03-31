@@ -1,3 +1,3 @@
-
-https://wiki.x5.ru/spaces/BDPP/pages/1420065026/WPUFIB01
-https://flink-operator-x5potok-test-salt-1.x5.ru/#/overview
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+private static final Logger log = LogManager.getLogger("ru.x5.parser");
