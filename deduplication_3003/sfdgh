@@ -1,3 +1,4 @@
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 private static final Logger log = LogManager.getLogger("ru.x5.parser");
+как поменять на ламбок
