@@ -1,7 +1,6 @@
 SELECT substr(result, 1, 5000)
 FROM ice_baby.core_flow_ing_raw.raw_table_audit
-WHERE datetime >= TIMESTAMP '2026-03-30 00:00:00'
-  AND datetime < TIMESTAMP '2026-03-31 00:00:00'
+WHERE datetime LIKE '%Mar 24%'
   AND result LIKE '%35VM%'
   AND result LIKE '%100000000001749671%'
 LIMIT 1
