@@ -1,3 +1,5 @@
-Отсутствие записей в raw_bptender и raw_bpretaillineitem не является багом и ошибкой парсера. Все эти проблемные записи относятся к служебным типам транзакций:  1107, 1108, 1103, 1104, 1301, 1302, 1601 и тд. Дополнительно я проверил исходный XML в таблице аудата для конкретной транзакции типа 1107, SAP не включает сегменты E1BPTENDER и E1BPRETAILLINEITEM в XML для таких транзакций, поэтому парсер корректно записывает только транзакцию.
-Для чековых типов транзакций (1001, 1002, 1003) я провёл отдельную проверку -  у всех присутствуют записи в raw_bptender и raw_bpretaillineitem. Пропусков нет.
-Щас подправю метод в корректоре, чтобы при отсутствии сумм для сравнения устанавливался null, а не false.
+SELECT retailstoreid, businessdaydate, workstationid, 
+       transactionsequencenumber, transactiontypecode, is_aligned_tran
+FROM ice_baby.core_flow_ing_raw.raw_bptransaction
+WHERE businessdaydate = date '2026-03-30'
+  AND is_aligned_tran IS NULL
