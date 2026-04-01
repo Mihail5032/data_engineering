@@ -5,7 +5,6 @@ WHERE datetime LIKE '%Mar 30%'
   AND result LIKE '%1749671%'
 LIMIT 1
 
-
 SELECT workstationid, transactiontypecode
 FROM ice_baby.core_flow_ing_raw.raw_bptransaction
 WHERE businessdaydate = date '2026-03-30'
