@@ -1,14 +1,1 @@
-rtl_txn_rk	varbinary
-begindatetimestamp	timestamp(6)
-businessdaydate	date
-enddatetimestamp	timestamp(6)
-operatorid	varchar
-retailstoreid	varchar
-transactioncurrency	varchar
-transactionsequencenumber	varchar
-transactiontypecode	varchar
-workstationid	varchar
-load_ts	timestamp(6)
-load_date_xml	date
-load_ts_xml	timestamp(6)
-is_aligned_tran	boolean
+mvn clean package -DskipTests
