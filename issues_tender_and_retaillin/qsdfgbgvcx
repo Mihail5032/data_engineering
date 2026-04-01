@@ -1,8 +1,7 @@
-SELECT transactionsequencenumber, workstationid, _commit_snapshot_id
+SELECT *
 FROM ice_baby.core_flow_ing_raw.raw_bptransaction_test
 WHERE retailstoreid = '36AM'
-  AND transactionsequencenumber IN ('100000000001317770', '100000000001317759', '100000000001317763')
-ORDER BY transactionsequencenumber, _commit_snapshot_id
+  AND transactionsequencenumber = '100000000001317770'
 
 
 
