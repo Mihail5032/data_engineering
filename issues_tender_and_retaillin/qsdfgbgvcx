@@ -1,25 +1,4 @@
-SELECT substr(result, 1, 5000)
-FROM ice_baby.core_flow_ing_raw.raw_table_audit
-WHERE datetime LIKE '%Mar 30%'
-  AND result LIKE '%<RETAILSTOREID>35VM</RETAILSTOREID>%'
-  AND result LIKE '%1749671%'
-LIMIT 1
-
-SELECT workstationid, transactiontypecode
-FROM ice_baby.core_flow_ing_raw.raw_bptransaction
+SELECT is_aligned_tran, count(*)
+FROM ice_baby.core_flow_ing_raw.raw_bptransaction_test
 WHERE businessdaydate = date '2026-03-30'
-  AND transactionsequencenumber = '100000000001749671'
-  AND retailstoreid = '35VM'
------
-SELECT t.transactiontypecode, count(*) as cnt
-FROM ice_baby.core_flow_ing_raw.raw_bptransaction t
-LEFT JOIN ice_baby.core_flow_ing_raw.raw_bptender te
-  ON t.retailstoreid = te.retailstoreid
-  AND t.businessdaydate = te.businessdaydate
-  AND t.workstationid = te.workstationid
-  AND t.transactionsequencenumber = te.transactionsequencenumber
-WHERE t.businessdaydate = date '2026-03-30'
-  AND t.transactiontypecode IN ('1001', '1002', '1003', '1014')
-  AND te.retailstoreid IS NULL
-GROUP BY t.transactiontypecode
-ORDER BY cnt DESC
+GROUP BY is_aligned_tran
