@@ -21,3 +21,16 @@ FROM ice_baby.core_flow_ing_raw.raw_bptransaction
 WHERE businessdaydate = date '2026-03-30'
   AND transactionsequencenumber = '100000000000730322'
   AND retailstoreid = '3B4C'
+
+-------------------------------
+SELECT t.transactiontypecode, count(*) as cnt
+FROM ice_baby.core_flow_ing_raw.raw_bptransaction t
+LEFT JOIN ice_baby.core_flow_ing_raw.raw_bptender te
+  ON t.retailstoreid = te.retailstoreid
+  AND t.businessdaydate = te.businessdaydate
+  AND t.workstationid = te.workstationid
+  AND t.transactionsequencenumber = te.transactionsequencenumber
+WHERE t.businessdaydate = date '2026-03-30'
+  AND te.retailstoreid IS NULL
+GROUP BY t.transactiontypecode
+ORDER BY cnt DESC
