@@ -1,19 +1,8 @@
-SELECT count(*)
-FROM ice_baby.core_flow_ing_raw.raw_bptender
-WHERE businessdaydate = date '2026-03-30'
-  AND retailstoreid = 'DA0K'
-  AND transactionsequencenumber = '110000000000203596'
+SELECT transactionsequencenumber, workstationid, _commit_snapshot_id
+FROM ice_baby.core_flow_ing_raw.raw_bptransaction_test
+WHERE retailstoreid = '36AM'
+  AND transactionsequencenumber IN ('100000000001317770', '100000000001317759', '100000000001317763')
+ORDER BY transactionsequencenumber, _commit_snapshot_id
 
-SELECT tenderamount, tendertypecode
-FROM ice_baby.core_flow_ing_raw.raw_bptender
-WHERE businessdaydate = date '2026-03-30'
-  AND retailstoreid = 'DA0K'
-  AND transactionsequencenumber = '110000000000203596'
-
-SELECT salesamount, retailtypecode
-FROM ice_baby.core_flow_ing_raw.raw_bpretaillineitem
-WHERE businessdaydate = date '2026-03-30'
-  AND retailstoreid = 'DA0K'
-  AND transactionsequencenumber = '110000000000203596'
 
 
