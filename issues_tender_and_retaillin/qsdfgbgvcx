@@ -1,6 +1,7 @@
-SELECT count(*)
+SELECT substr(result, 1, 1000)
 FROM ice_baby.core_flow_ing_raw.raw_table_audit
 WHERE result LIKE '%<RETAILSTOREID>36AM</RETAILSTOREID>%'
   AND result LIKE '%1317770%'
+LIMIT 1
 
 
