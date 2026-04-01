@@ -1,5 +1,5 @@
-SELECT retailstoreid, businessdaydate, workstationid, 
-       transactionsequencenumber, transactiontypecode, is_aligned_tran
-FROM ice_baby.core_flow_ing_raw.raw_bptransaction
+SELECT count(*)
+FROM ice_baby.core_flow_ing_raw.raw_bptender
 WHERE businessdaydate = date '2026-03-30'
-  AND is_aligned_tran IS NULL
+  AND retailstoreid = 'DA0K'
+  AND transactionsequencenumber = '110000000000203596'
