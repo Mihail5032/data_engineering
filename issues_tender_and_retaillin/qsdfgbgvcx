@@ -17,5 +17,4 @@ LIMIT 1
 
 'ru.x5.parser' | filter _msg =~ ".*1317730.*"
 
-
-
+ru.x5.parser AND "1317*"
