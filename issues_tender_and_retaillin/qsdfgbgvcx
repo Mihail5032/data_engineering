@@ -18,3 +18,13 @@ LIMIT 1
 'ru.x5.parser' | filter _msg =~ ".*1317730.*"
 
 ru.x5.parser AND "1317*"
+
+_msg:re("ru\\.x5\\.parse")
+
+Или через wildcard:
+
+"ru.x5.parse*"
+
+Или просто:
+
+ru.x5.parse*
