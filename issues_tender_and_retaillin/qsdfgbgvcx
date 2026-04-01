@@ -1,4 +1,6 @@
-SELECT is_aligned_tran, count(*)
-FROM ice_baby.core_flow_ing_raw.raw_bptransaction_test
+SELECT transactiontypecode, is_aligned_tran, count(*) as cnt
+FROM ice_baby.core_flow_ing_raw.raw_bptransaction
 WHERE businessdaydate = date '2026-03-30'
-GROUP BY is_aligned_tran
+  AND is_aligned_tran = false
+GROUP BY transactiontypecode, is_aligned_tran
+ORDER BY cnt DESC
