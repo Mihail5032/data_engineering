@@ -1,7 +1,6 @@
-SELECT transactionsequencenumber, load_ts_xml
-FROM ice_baby.core_flow_ing_raw.raw_bptransaction_test
-WHERE retailstoreid = '36AM'
-  AND transactionsequencenumber IN ('100000000001317770', '100000000001317759', '100000000001317763')
-ORDER BY transactionsequencenumber, load_ts_xml
+SELECT count(*)
+FROM ice_baby.core_flow_ing_raw.raw_table_audit
+WHERE result LIKE '%<RETAILSTOREID>36AM</RETAILSTOREID>%'
+  AND result LIKE '%1317770%'
 
 
