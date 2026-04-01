@@ -4,4 +4,8 @@ WHERE result LIKE '%<RETAILSTOREID>36AM</RETAILSTOREID>%'
   AND result LIKE '%1317770%'
 LIMIT 1
 
+'ru.x5.parser' AND '1317730'
+
+
+
 
