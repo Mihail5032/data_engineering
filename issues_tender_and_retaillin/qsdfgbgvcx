@@ -1,6 +1,14 @@
-SELECT *
-FROM ice_baby.core_flow_ing_raw.raw_table_audit
-WHERE datetime LIKE '%Mar 30%'
-and 
-result LIKE '%<RETAILSTOREID>36AM</RETAILSTOREID>%'
-  AND result LIKE '%1317770%'
+rtl_txn_rk	varbinary
+begindatetimestamp	timestamp(6)
+businessdaydate	date
+enddatetimestamp	timestamp(6)
+operatorid	varchar
+retailstoreid	varchar
+transactioncurrency	varchar
+transactionsequencenumber	varchar
+transactiontypecode	varchar
+workstationid	varchar
+load_ts	timestamp(6)
+load_date_xml	date
+load_ts_xml	timestamp(6)
+is_aligned_tran	boolean
