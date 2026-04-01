@@ -1,2 +1,6 @@
-"ru.x5.parse*" AND "1317730*"
-
+SELECT *
+FROM ice_baby.core_flow_ing_raw.raw_table_audit
+WHERE datetime LIKE '%Mar 30%'
+and 
+result LIKE '%<RETAILSTOREID>36AM</RETAILSTOREID>%'
+  AND result LIKE '%1317770%'
