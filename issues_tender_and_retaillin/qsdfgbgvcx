@@ -1,29 +1,4 @@
-
-select * from ice_baby.core_flow_ing_raw.raw_bptransaction 
-where 1=1
-and businessdaydate = date '2026-03-30'
-and transactionsequencenumber = '100000000000730322'
-and retailstoreid = '3B4C'
-and is_aligned_tran = false
-select * from ice_baby.core_flow_ing_raw.raw_bptender 
-where 1=1
-and businessdaydate = date '2026-03-30'
-and transactionsequencenumber = '100000000000730322'
-and retailstoreid = '3B4C'
-select * from ice_baby.core_flow_ing_raw.raw_bpretaillineitem 
-where 1=1
-and businessdaydate = date '2026-03-30'
-and transactionsequencenumber = '100000000000730322'
-and retailstoreid = '3B4C'
-------------------------------
-SELECT transactiontypecode, workstationid
-FROM ice_baby.core_flow_ing_raw.raw_bptransaction
-WHERE businessdaydate = date '2026-03-30'
-  AND transactionsequencenumber = '100000000000730322'
-  AND retailstoreid = '3B4C'
-
--------------------------------
-SELECT t.transactiontypecode, count(*) as cnt
+SELECT retailstoreid, transactionsequencenumber
 FROM ice_baby.core_flow_ing_raw.raw_bptransaction t
 LEFT JOIN ice_baby.core_flow_ing_raw.raw_bptender te
   ON t.retailstoreid = te.retailstoreid
@@ -31,6 +6,6 @@ LEFT JOIN ice_baby.core_flow_ing_raw.raw_bptender te
   AND t.workstationid = te.workstationid
   AND t.transactionsequencenumber = te.transactionsequencenumber
 WHERE t.businessdaydate = date '2026-03-30'
+  AND t.transactiontypecode = '1107'
   AND te.retailstoreid IS NULL
-GROUP BY t.transactiontypecode
-ORDER BY cnt DESC
+LIMIT 1
