@@ -4,3 +4,10 @@ WHERE datetime LIKE '%Mar 30%'
   AND result LIKE '%<RETAILSTOREID>35VM</RETAILSTOREID>%'
   AND result LIKE '%1749671%'
 LIMIT 1
+
+
+SELECT workstationid, transactiontypecode
+FROM ice_baby.core_flow_ing_raw.raw_bptransaction
+WHERE businessdaydate = date '2026-03-30'
+  AND transactionsequencenumber = '100000000001749671'
+  AND retailstoreid = '35VM'
