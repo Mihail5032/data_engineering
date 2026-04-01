@@ -1,6 +1,6 @@
 SELECT substr(result, 1, 5000)
 FROM ice_baby.core_flow_ing_raw.raw_table_audit
-WHERE datetime LIKE '%Mar 24%'
-  AND result LIKE '%35VM%'
-  AND result LIKE '%100000000001749671%'
+WHERE datetime LIKE '%Mar 30%'
+  AND result LIKE '%<RETAILSTOREID>35VM</RETAILSTOREID>%'
+  AND result LIKE '%1749671%'
 LIMIT 1
