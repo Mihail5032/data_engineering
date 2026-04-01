@@ -65,7 +65,7 @@ public class PstTransactionKeySelector implements KeySelector<RowData, String> {
         String storeId = row.isNullAt(retailStoreIdPos) ? ""
                 : row.getString(retailStoreIdPos).toString();
         String dayDate = row.isNullAt(businessDayDatePos) ? ""
-                : row.getString(businessDayDatePos).toString();
+                : String.valueOf(row.getInt(businessDayDatePos));
         String wsId = row.isNullAt(workstationIdPos) ? ""
                 : row.getString(workstationIdPos).toString();
         String seqNum = row.isNullAt(txnSeqNumPos) ? ""
