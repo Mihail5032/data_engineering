@@ -5,7 +5,17 @@ WHERE result LIKE '%<RETAILSTOREID>36AM</RETAILSTOREID>%'
 LIMIT 1
 
 'ru.x5.parser' AND '1317730'
+В VictoriaLogs попробуй такой запрос:
 
+'ru.x5.parser' AND '1317730'
+
+Если не находит, попробуй с wildcard:
+
+'ru.x5.parser' AND _msg:~".*1317730.*"
+
+Или через regex фильтр:
+
+'ru.x5.parser' | filter _msg =~ ".*1317730.*"
 
 
 
