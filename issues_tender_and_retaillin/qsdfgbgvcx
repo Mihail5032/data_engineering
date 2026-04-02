@@ -1,1 +1,1 @@
-mvn clean package -DskipTests
+Checkpoint Detail:Path: s3a://flink-operator-data/flink-checkpoints-dev2/a6c36228b6e44b7b49f6df84ad30f6d6/chk-150 
