@@ -67,29 +67,29 @@ public class RawDataProcessFunction extends ProcessFunction<String, RowData> {
 
     @Override
     public void open(org.apache.flink.api.common.functions.OpenContext openContext){
-        org.apache.hadoop.conf.Configuration hadoopConf = new org.apache.hadoop.conf.Configuration();
-        hadoopConf.set("fs.s3a.endpoint", "http://minio.minio.svc.cluster.local:9000");
-        hadoopConf.set("fs.s3a.path.style.access", "true");
-        hadoopConf.set("fs.s3a.access.key", "PeY5qkotF86JtHWbkjKe");
-        hadoopConf.set("fs.s3a.secret.key", "xIGISyJTDSmhjhwmDeTe0bCm6jCFjGRPcrN0C2JY");
+        PropertiesHolder config = PropertiesHolder.getInstance();
 
-        hadoopConf.set("fs.s3a.connection.ssl.enabled", "false");
+        org.apache.hadoop.conf.Configuration hadoopConf = new org.apache.hadoop.conf.Configuration();
+        hadoopConf.set("fs.s3a.endpoint", config.getS3Endpoint());
+        hadoopConf.set("fs.s3a.path.style.access", config.getPathStyleAccess());
+        hadoopConf.set("fs.s3a.access.key", config.getAccessKey());
+        hadoopConf.set("fs.s3a.secret.key", config.getSecretKey());
+        hadoopConf.set("fs.s3a.connection.ssl.enabled", config.getConnectionsSslEnabled());
         hadoopConf.set("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem");
-        hadoopConf.set("fs.s3a.aws.credentials.provider", "org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider");
-        hadoopConf.set("fs.s3a.region", "us-east-1");
-        hadoopConf.set("hive.metastore.uris", "thrift://hms.s3-hms.svc.cluster.local:9083");
-        hadoopConf.setBoolean("fs.s3a.impl.disable.cache", true);
+        hadoopConf.set("fs.s3a.aws.credentials.provider", config.getAwsCredentialsProvider());
+        hadoopConf.set("fs.s3a.region", config.getClientRegion());
+        hadoopConf.set("hive.metastore.uris", config.getHiveMetastoreUris());
+        hadoopConf.setBoolean("fs.s3a.impl.disable.cache", Boolean.parseBoolean(config.getImplDisCache()));
 
         // Catalog properties — S3FileIO вместо HadoopFileIO (обходит Flink S3 plugin)
         Map<String, String> catalogProps = new HashMap<>();
-        catalogProps.put("warehouse", "s3a://warehouse");
-        catalogProps.put("io-impl", "org.apache.iceberg.aws.s3.S3FileIO");
-        catalogProps.put("s3.endpoint", "http://minio.minio.svc.cluster.local:9000");
-        catalogProps.put("s3.path-style-access", "true");
-        catalogProps.put("s3.access-key-id", "PeY5qkotF86JtHWbkjKe");
-        catalogProps.put("s3.secret-access-key", "xIGISyJTDSmhjhwmDeTe0bCm6jCFjGRPcrN0C2JY");
-
-        catalogProps.put("client.region", "us-east-1");
+        catalogProps.put("warehouse", config.getWarehouse());
+        catalogProps.put("io-impl", config.getIoImpl());
+        catalogProps.put("s3.endpoint", config.getS3Endpoint());
+        catalogProps.put("s3.path-style-access", config.getPathStyleAccess());
+        catalogProps.put("s3.access-key-id", config.getAccessKey());
+        catalogProps.put("s3.secret-access-key", config.getSecretKey());
+        catalogProps.put("client.region", config.getClientRegion());
 
         this.catalogLoaderDict = CatalogLoader.hive(CATALOG_DICT, hadoopConf, catalogProps);
         this.tableIdentifierMean = TableIdentifier.of(SCHEMA_DICT, "mean_fm");
