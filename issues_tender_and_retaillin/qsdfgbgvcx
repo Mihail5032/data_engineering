@@ -1,7 +1,4 @@
-Checkpoint Detail:Path: s3a://flink-operator-data/flink-checkpoints-dev2/a6c36228b6e44b7b49f6df84ad30f6d6/chk-150 
-
-
-2026-04-02 10:26:07
+2026-04-02 11:48:03
 java.util.concurrent.CompletionException: java.util.concurrent.CompletionException: org.apache.flink.runtime.jobmanager.scheduler.NoResourceAvailableException: Could not acquire the minimum required resources.
 	at org.apache.flink.runtime.scheduler.DefaultExecutionDeployer.lambda$assignResource$4(DefaultExecutionDeployer.java:226)
 	at java.base/java.util.concurrent.CompletableFuture.uniHandle(Unknown Source)
@@ -13,7 +10,7 @@ java.util.concurrent.CompletionException: java.util.concurrent.CompletionExcepti
 	at org.apache.flink.runtime.jobmaster.slotpool.DeclarativeSlotPoolBridge.failPendingRequests(DeclarativeSlotPoolBridge.java:475)
 	at org.apache.flink.runtime.jobmaster.slotpool.DeclarativeSlotPoolBridge.notifyNotEnoughResourcesAvailable(DeclarativeSlotPoolBridge.java:463)
 	at org.apache.flink.runtime.jobmaster.JobMaster.notifyNotEnoughResourcesAvailable(JobMaster.java:972)
-	at jdk.internal.reflect.GeneratedMethodAccessor265.invoke(Unknown Source)
+	at jdk.internal.reflect.GeneratedMethodAccessor146.invoke(Unknown Source)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
 	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
 	at org.apache.flink.runtime.rpc.pekko.PekkoRpcActor.lambda$handleRpcInvocation$0(PekkoRpcActor.java:310)
@@ -47,3 +44,5 @@ Caused by: java.util.concurrent.CompletionException: org.apache.flink.runtime.jo
 	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
 	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
 	at java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(Unknown Source)
+	... 37 more
+Caused by: org.apache.flink.runtime.jobmanager.scheduler.NoResourceAvailableException: Could not acquire the minimum required resources.
