@@ -15,26 +15,7 @@ DELETE FROM core_flow_ing_raw.raw_bptransactextensio;
 DELETE FROM core_flow_ing_raw.raw_bptransaction;
 DELETE FROM core_flow_ing_raw.raw_bptransactiondisco;
 
-
--- ===== 1. Очистить данные =====
-TRUNCATE TABLE core_flow_ing_raw.raw_bpfinacialmovement;
-TRUNCATE TABLE core_flow_ing_raw.raw_bpfinancialmovemen;
-TRUNCATE TABLE core_flow_ing_raw.raw_bplineitemdiscext;
-TRUNCATE TABLE core_flow_ing_raw.raw_bplineitemdiscount;
-TRUNCATE TABLE core_flow_ing_raw.raw_bplineitemextensio;
-TRUNCATE TABLE core_flow_ing_raw.raw_bplineitemtax;
-TRUNCATE TABLE core_flow_ing_raw.raw_bpretaillineitem;
-TRUNCATE TABLE core_flow_ing_raw.raw_bpretailtotals;
-TRUNCATE TABLE core_flow_ing_raw.raw_bpsourcedocumentli;
-TRUNCATE TABLE core_flow_ing_raw.raw_bptender;
-TRUNCATE TABLE core_flow_ing_raw.raw_bptenderextensions;
-TRUNCATE TABLE core_flow_ing_raw.raw_bptendertotals;
-TRUNCATE TABLE core_flow_ing_raw.raw_bptransactdiscext;
-TRUNCATE TABLE core_flow_ing_raw.raw_bptransactextensio;
-TRUNCATE TABLE core_flow_ing_raw.raw_bptransaction;
-TRUNCATE TABLE core_flow_ing_raw.raw_bptransactiondisco;
-
--- ===== 2. Удалить старые снапшоты =====
+-- 2. Удалить старые снапшоты
 ALTER TABLE core_flow_ing_raw.raw_bpfinacialmovement EXECUTE expire_snapshots(retention_threshold => '0d');
 ALTER TABLE core_flow_ing_raw.raw_bpfinancialmovemen EXECUTE expire_snapshots(retention_threshold => '0d');
 ALTER TABLE core_flow_ing_raw.raw_bplineitemdiscext EXECUTE expire_snapshots(retention_threshold => '0d');
@@ -52,7 +33,7 @@ ALTER TABLE core_flow_ing_raw.raw_bptransactextensio EXECUTE expire_snapshots(re
 ALTER TABLE core_flow_ing_raw.raw_bptransaction EXECUTE expire_snapshots(retention_threshold => '0d');
 ALTER TABLE core_flow_ing_raw.raw_bptransactiondisco EXECUTE expire_snapshots(retention_threshold => '0d');
 
--- ===== 3. Удалить осиротевшие файлы с диска =====
+-- 3. Удалить осиротевшие файлы с диска
 ALTER TABLE core_flow_ing_raw.raw_bpfinacialmovement EXECUTE remove_orphan_files(retention_threshold => '0d');
 ALTER TABLE core_flow_ing_raw.raw_bpfinancialmovemen EXECUTE remove_orphan_files(retention_threshold => '0d');
 ALTER TABLE core_flow_ing_raw.raw_bplineitemdiscext EXECUTE remove_orphan_files(retention_threshold => '0d');
