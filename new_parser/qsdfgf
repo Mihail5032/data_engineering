@@ -1,3 +1,20 @@
+DELETE FROM core_flow_ing_raw.raw_bpfinacialmovement;
+DELETE FROM core_flow_ing_raw.raw_bpfinancialmovemen;
+DELETE FROM core_flow_ing_raw.raw_bplineitemdiscext;
+DELETE FROM core_flow_ing_raw.raw_bplineitemdiscount;
+DELETE FROM core_flow_ing_raw.raw_bplineitemextensio;
+DELETE FROM core_flow_ing_raw.raw_bplineitemtax;
+DELETE FROM core_flow_ing_raw.raw_bpretaillineitem;
+DELETE FROM core_flow_ing_raw.raw_bpretailtotals;
+DELETE FROM core_flow_ing_raw.raw_bpsourcedocumentli;
+DELETE FROM core_flow_ing_raw.raw_bptender;
+DELETE FROM core_flow_ing_raw.raw_bptenderextensions;
+DELETE FROM core_flow_ing_raw.raw_bptendertotals;
+DELETE FROM core_flow_ing_raw.raw_bptransactdiscext;
+DELETE FROM core_flow_ing_raw.raw_bptransactextensio;
+DELETE FROM core_flow_ing_raw.raw_bptransaction;
+DELETE FROM core_flow_ing_raw.raw_bptransactiondisco;
+
 
 -- ===== 1. Очистить данные =====
 TRUNCATE TABLE core_flow_ing_raw.raw_bpfinacialmovement;
