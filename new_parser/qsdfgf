@@ -15,6 +15,8 @@ DELETE FROM core_flow_ing_raw.raw_bptransactextensio;
 DELETE FROM core_flow_ing_raw.raw_bptransaction;
 DELETE FROM core_flow_ing_raw.raw_bptransactiondisco;
 
+SQL Error [30]: Query failed (#20260403_155929_01292_mb58b): Retention specified (0.00d) is shorter than the minimum retention configured in the system (1.00m). Minimum retention can be changed with iceberg.expire_snapshots.min-retention configuration property or iceberg.expire_snapshots_min_retention session property
+
 -- 2. Удалить старые снапшоты
 ALTER TABLE ice_baby.core_flow_ing_raw.raw_bpfinacialmovement EXECUTE expire_snapshots(retention_threshold => '0d');
 ALTER TABLE ice_baby.core_flow_ing_raw.raw_bpfinancialmovemen EXECUTE expire_snapshots(retention_threshold => '0d');
