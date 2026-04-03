@@ -1,1 +1,23 @@
 
+-- Тестовые копии всех RAW таблиц (пустые, с такой же схемой)
+-- Схема: core_flow_ing_raw
+
+-- PST-сегменты (11 таблиц)
+CREATE TABLE core_flow_ing_raw.raw_bptransaction_test       AS SELECT * FROM core_flow_ing_raw.raw_bptransaction       WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bpfinancialmovemen_test  AS SELECT * FROM core_flow_ing_raw.raw_bpfinancialmovemen  WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bptransactextensio_test  AS SELECT * FROM core_flow_ing_raw.raw_bptransactextensio  WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bpfinacialmovement_test  AS SELECT * FROM core_flow_ing_raw.raw_bpfinacialmovement  WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bpretaillineitem_test    AS SELECT * FROM core_flow_ing_raw.raw_bpretaillineitem    WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bplineitemextensio_test  AS SELECT * FROM core_flow_ing_raw.raw_bplineitemextensio  WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bplineitemdiscount_test  AS SELECT * FROM core_flow_ing_raw.raw_bplineitemdiscount  WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bplineitemdiscext_test   AS SELECT * FROM core_flow_ing_raw.raw_bplineitemdiscext   WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bptransactdiscext_test   AS SELECT * FROM core_flow_ing_raw.raw_bptransactdiscext   WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bptender_test            AS SELECT * FROM core_flow_ing_raw.raw_bptender            WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bptenderextensions_test  AS SELECT * FROM core_flow_ing_raw.raw_bptenderextensions  WHERE 1=0;
+
+-- RAW-only сегменты (5 таблиц)
+CREATE TABLE core_flow_ing_raw.raw_bpsourcedocumentli_test  AS SELECT * FROM core_flow_ing_raw.raw_bpsourcedocumentli  WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bplineitemtax_test       AS SELECT * FROM core_flow_ing_raw.raw_bplineitemtax       WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bpretailtotals_test      AS SELECT * FROM core_flow_ing_raw.raw_bpretailtotals      WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bptendertotals_test      AS SELECT * FROM core_flow_ing_raw.raw_bptendertotals      WHERE 1=0;
+CREATE TABLE core_flow_ing_raw.raw_bptransactiondisco_test  AS SELECT * FROM core_flow_ing_raw.raw_bptransactiondisco  WHERE 1=0;
