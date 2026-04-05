@@ -1,19 +1,6 @@
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  13.313 s
-[INFO] Finished at: 2026-04-03T19:05:45+03:00
-[INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (default-compile) on project
- xml-parser-correction: Compilation failure: Compilation failure:
-[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[3,32] package org.apache.logging.log4j does not exist
-[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[4,32] package org.apache.logging.log4j does not exist
-[ERROR] /C:/Users/Mikha.Shishkanov/flink-jobs/xml-parser-correction/src/main/java/ru/x5/process/TransactionCorrector.java:[13,26] cannot find symbol
-[ERROR]   symbol:   class Logger
-[ERROR]   location: class ru.x5.process.TransactionCorrector
-[ERROR] -> [Help 1]
-[ERROR]
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR]
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+raw_bptransactdiscext	<E1BPTRANSACTDISCEXT>
+raw_bplineitemdiscext	<E1BPLINEITEMDISCEXT>
+raw_bplineitemdiscount	<E1BPLINEITEMDISCOUNT>
+raw_bptendertotals	<E1BPTENDERTOTALS>
+raw_bpretailtotals	<E1BPRETAILTOTALS>
+raw_bplineitemtax	<E1BPLINEITEMTAX>
