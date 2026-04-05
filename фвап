@@ -1,10 +1,1 @@
-git checkout -b feature/test-producer
-
-# 2. Добавить файлы
-git add .
-
-# 3. Закоммитить
-git commit -m "fix TestProducerJob - use plain KafkaProducer"
-
-# 4. Запушить
-git push -u origin feature/test-producer
+E1BPTRANSACTIONDISCO
